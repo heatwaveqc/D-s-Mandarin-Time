@@ -8,7 +8,7 @@ mandarin-traditional: 寫
 mandarin-pinyin: xiě
 mandarin-gloss: write
 mandarin-pos: verb
-mandarin-lexical-band: high-use
+mandarin-review-status: editorial-reviewed; band-unverified
 mandarin-registers: general
 mandarin-topics: everyday
 
@@ -22,4 +22,4 @@ mandarin-topics: everyday
 学生在纸上写名字。 — Xuésheng zài zhǐ shang xiě míngzi. — The student writes a name on the paper.
 
 !! Usage note
-This is a provisional pilot entry; consult context to select the appropriate sense.
+写 (xiě) takes written material as its object, as in 写字 (xiězì, 'write characters') or 写名字 (xiě míngzi, 'write a name').

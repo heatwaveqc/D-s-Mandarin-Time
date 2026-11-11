@@ -8,7 +8,7 @@ mandarin-traditional: 休息
 mandarin-pinyin: xiūxi
 mandarin-gloss: rest; take a break
 mandarin-pos: verb; noun
-mandarin-lexical-band: high-use
+mandarin-review-status: editorial-reviewed; band-unverified
 mandarin-registers: general
 mandarin-topics: everyday
 
@@ -22,4 +22,4 @@ mandarin-topics: everyday
 我们吃完饭以后休息。 — Wǒmen chī wán fàn yǐhòu xiūxi. — We’ll rest after eating.
 
 !! Usage note
-Final 息 is commonly neutral.
+Common as a verb ('to rest' or 'take a break'); it can also name a rest period. The second syllable is normally neutral.

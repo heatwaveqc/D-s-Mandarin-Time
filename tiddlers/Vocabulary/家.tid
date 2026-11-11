@@ -8,7 +8,7 @@ mandarin-traditional: 家
 mandarin-pinyin: jiā
 mandarin-gloss: home; family; classifier for businesses/institutions
 mandarin-pos: noun; measure word
-mandarin-lexical-band: fundamental
+mandarin-review-status: editorial-reviewed; band-unverified
 mandarin-registers: general
 mandarin-topics: everyday
 
@@ -22,4 +22,4 @@ mandarin-topics: everyday
 她今天在家。 — Tā jīntiān zài jiā. — She is at home today.
 
 !! Usage note
-The classifier use is a distinct grammatical function; expand examples in a later sense review.
+A noun meaning 'home' or 'family', and also a classifier for establishments. Compare 这是一家饭店 (Zhè shì yì jiā fàndiàn, 'This is a restaurant').

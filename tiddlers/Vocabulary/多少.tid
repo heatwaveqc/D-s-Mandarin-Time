@@ -8,7 +8,7 @@ mandarin-traditional: 多少
 mandarin-pinyin: duōshao
 mandarin-gloss: how many; how much
 mandarin-pos: interrogative pronoun
-mandarin-lexical-band: fundamental
+mandarin-review-status: editorial-reviewed; band-unverified
 mandarin-registers: general
 mandarin-topics: everyday
 
@@ -22,4 +22,4 @@ mandarin-topics: everyday
 这本书多少钱？ — Zhè běn shū duōshao qián? — How much is this book?
 
 !! Usage note
-Final 少 is commonly neutral.
+Used to ask about quantities or prices without presupposing a small answer. Unlike 几 (jǐ), it does not ordinarily require a following classifier. The second syllable is commonly neutral.
