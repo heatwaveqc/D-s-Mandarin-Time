@@ -8,7 +8,7 @@ mandarin-traditional: 問
 mandarin-pinyin: wèn
 mandarin-gloss: ask; inquire
 mandarin-pos: verb
-mandarin-lexical-band: high-use
+mandarin-review-status: editorial-reviewed; band-unverified
 mandarin-registers: general
 mandarin-topics: everyday
 
@@ -22,4 +22,4 @@ mandarin-topics: everyday
 我想问老师一个问题。 — Wǒ xiǎng wèn lǎoshī yí ge wèntí. — I want to ask the teacher a question.
 
 !! Usage note
-This is a provisional pilot entry; consult context to select the appropriate sense.
+Can take an addressee and an inquiry, as in 问老师一个问题 (wèn lǎoshī yí ge wèntí, 'ask the teacher a question').

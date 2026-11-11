@@ -8,7 +8,7 @@ mandarin-traditional: 老師
 mandarin-pinyin: lǎoshī
 mandarin-gloss: teacher; respectful form of address for a teacher
 mandarin-pos: noun
-mandarin-lexical-band: fundamental
+mandarin-review-status: editorial-reviewed; band-unverified
 mandarin-registers: general
 mandarin-topics: everyday
 
@@ -22,4 +22,4 @@ mandarin-topics: everyday
 老师今天很忙。 — Lǎoshī jīntiān hěn máng. — The teacher is busy today.
 
 !! Usage note
-This is a provisional pilot entry; consult context to select the appropriate sense.
+Noun for 'teacher', also used as a form of address, as in 张老师 (Zhāng lǎoshī, 'Teacher Zhang').

@@ -8,7 +8,7 @@ mandarin-traditional: 水
 mandarin-pinyin: shuǐ
 mandarin-gloss: water
 mandarin-pos: noun
-mandarin-lexical-band: fundamental
+mandarin-review-status: editorial-reviewed; band-unverified
 mandarin-registers: general
 mandarin-topics: everyday
 
@@ -22,4 +22,4 @@ mandarin-topics: everyday
 请给我一杯水。 — Qǐng gěi wǒ yì bēi shuǐ. — Please give me a glass of water.
 
 !! Usage note
-This is a provisional pilot entry; consult context to select the appropriate sense.
+A mass noun. Use a measure phrase such as 一杯水 (yì bēi shuǐ, 'a glass of water'); 一 undergoes tone sandhi here.

@@ -6,20 +6,20 @@ mandarin-level: reference
 mandarin-hanzi: 读
 mandarin-traditional: 讀
 mandarin-pinyin: dú
-mandarin-gloss: read; study aloud
+mandarin-gloss: read; study
 mandarin-pos: verb
-mandarin-lexical-band: high-use
+mandarin-review-status: editorial-reviewed; band-unverified
 mandarin-registers: general
 mandarin-topics: everyday
 
 <div class="mandarin-hanzi">读</div>
 <div class="mandarin-pinyin">dú</div>
 
-''Meaning:'' read; study aloud  
+''Meaning:'' read; study  
 ''Part of speech:'' verb
 
 !! In context
 她每天读一本书。 — Tā měitiān dú yì běn shū. — She reads a book every day.
 
 !! Usage note
-The exact reading/study sense depends on context.
+Means 'read' or, in contexts such as 读书 (dúshū), 'study'. Reading aloud can be expressed more specifically with 朗读 (lǎngdú); 读 itself does not necessarily mean reading aloud.

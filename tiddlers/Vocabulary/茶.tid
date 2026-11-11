@@ -8,7 +8,7 @@ mandarin-traditional: 茶
 mandarin-pinyin: chá
 mandarin-gloss: tea
 mandarin-pos: noun
-mandarin-lexical-band: fundamental
+mandarin-review-status: editorial-reviewed; band-unverified
 mandarin-registers: general
 mandarin-topics: everyday
 
@@ -22,4 +22,4 @@ mandarin-topics: everyday
 他每天早上喝茶。 — Tā měitiān zǎoshang hē chá. — He drinks tea every morning.
 
 !! Usage note
-This is a provisional pilot entry; consult context to select the appropriate sense.
+A mass noun for tea. A serving is typically 一杯茶 (yì bēi chá, 'a cup of tea').

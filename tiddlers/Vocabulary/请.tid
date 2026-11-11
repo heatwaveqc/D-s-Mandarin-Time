@@ -8,7 +8,7 @@ mandarin-traditional: 請
 mandarin-pinyin: qǐng
 mandarin-gloss: please; invite; request politely
 mandarin-pos: verb; polite marker
-mandarin-lexical-band: fundamental
+mandarin-review-status: editorial-reviewed; band-unverified
 mandarin-registers: general
 mandarin-topics: everyday
 
@@ -22,4 +22,4 @@ mandarin-topics: everyday
 请坐。 — Qǐng zuò. — Please sit.
 
 !! Usage note
-This is a provisional pilot entry; consult context to select the appropriate sense.
+Before a verb, 请 (qǐng) makes a request or invitation polite, as in 请坐. As a full verb, it can mean 'invite', 'request', or 'treat'.
