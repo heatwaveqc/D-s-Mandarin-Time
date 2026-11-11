@@ -8,7 +8,7 @@ mandarin-level: foundation
 
 The vocabulary corpus grows as ''individual word tiddlers'', not one enormous list. This front page deliberately avoids rendering thousands of entries at once.
 
-<div class="mandarin-note">Use [[Vocabulary by Lesson]] for bounded, context-aware word lists, or the sidebar search for an individual Chinese word or pinyin spelling.</div>
+<div class="mandarin-note">The master lexicon is independent of the lesson sequence. Search the sidebar for any Chinese word or Pinyin spelling, including entries not yet assigned to a lesson. Use [[Vocabulary by Lesson]] to see the subset introduced in each lesson.</div>
 
 !! Target vocabulary standard
 
@@ -26,4 +26,4 @@ The vocabulary corpus grows as ''individual word tiddlers'', not one enormous li
 
 ''Current pilot:'' <$count filter="[tag[Mandarin Vocabulary]]"/> vocabulary tiddlers.
 
-The general 7,000-word plus 1,000–2,000 wuxia-specialist target will be partitioned across lessons, plus thematic collections. Each lemma is entered only once; lesson and topic membership are metadata, not duplicated glossary text.
+The general 7,000-word plus 1,000–2,000 wuxia-specialist target is a standalone lexical inventory. Teaching lessons and thematic collections can reference this inventory selectively. Each lexical entry exists only once; lesson assignment is optional metadata and does not determine whether a word belongs to the lexicon.
