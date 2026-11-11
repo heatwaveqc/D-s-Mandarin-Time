@@ -1,6 +1,6 @@
 # Mandarin vocabulary pilot — 2026-11
 
-Status: pilot candidate pool and repository implementation; not a coverage study. Frequency ranks are intentionally blank in this release because the source datasets were not downloaded and frozen for this run. HSK membership and level are likewise not asserted record-by-record. All 200 candidates are manually curated research candidates, not a licensed-source transcription. Each remains subject to review.
+Status: **editorially reviewed 25-entry repository pilot** and **provisional 200-entry candidate pool**; not a corpus coverage study, source-ranked frequency list, or independent native-linguist adjudication. Frequency ranks are intentionally blank in this release because the source datasets were not downloaded and frozen for this run. HSK membership and level are likewise not asserted record-by-record. All 200 candidates are manually curated research candidates, not a licensed-source transcription. Each remains subject to review.
 
 ## Source and rights assessment
 
@@ -20,13 +20,15 @@ Research access is not redistribution permission. In particular, a research down
 
 ## Identity and candidate protocol
 
-Candidate IDs use `cmn:<simplified-form>:<POS>` for a headword/POS unit; add a stable sense suffix only when senses require independent curriculum treatment (for example `cmn:打:verb:s01`). The display form is not itself the identity: traditional variants map to the same lexeme; POS-distinct or unrelated homographs may have separate records; polysemous senses stay together when their grammar/teaching behavior is shared. Heteronyms require sense/pronunciation-specific records or explicit reading notes. Separable verbs are lexicalized as the conventional verb but retain a note on separable syntax; productive phrases are not added as lexical items. This is a proposed convention, not yet enforced by the validator.
+**The CSV's `cmn:<simplified-form>:<POS>` identifiers are provisional candidate keys, not finalized stable lexeme IDs.** They embed mutable analyses (word class and orthography), which can change during adjudication. For example, 这里/那里 are locatives rather than ordinary nouns, while 安全 has adjectival and nominal uses. Before expanding imports, adopt immutable IDs independent of POS labels and assign them consistently to lexical tiddlers and the source ledger; preserve previously assigned IDs on future metadata edits. Traditional variants should map to the same lexical record when appropriate; POS-distinct or unrelated homographs may warrant separate entries, while polysemous senses can share an entry when their grammar/teaching behavior is shared. Heteronyms need clear reading-specific treatment; separable verbs need construction notes; productive phrases should not be counted automatically. The revised ID convention must be specified and tested before scale.
 
 The attached CSV has 200 unique simplified-form candidates across four provisional strata: 50 fundamental, 47 high-use, 53 high-availability, and 50 wuxia/xianxia. Cross-category duplicates were counted once and assigned to the first applicable stratum. Repeated occurrences across genres are one candidate, not multiple counts. “Provisional” is deliberate: source ranks, HSK editions/levels, frequency bands and coverage are not fabricated. Review confidence is a triage estimate, not a claim of corpus verification.
 
 ## Pilot import
 
-Twenty-five new entries are imported as independent vocabulary tiddlers with original examples and no lesson assignments. The existing 30 vocabulary entries were checked for exact-form duplicates; pilot forms were selected to avoid them. Existing lesson assignments and lesson indexes were not changed. The validator already allows omitted `mandarin-lessons` and rejects unresolved supplied IDs; the repository's existing tests cover both cases.
+Twenty-five new entries were prepared as independent vocabulary tiddlers, each with an original example and no lesson assignment. The existing 30 vocabulary entries were checked for exact-form duplicates before selecting the pilot. Existing lesson assignments and lesson indexes were not changed. The validator accepts omitted `mandarin-lessons` while rejecting unresolved supplied IDs.
+
+After editorial audit, **all 25 imported records have their `mandarin-lexical-band` field omitted** until their corpus and availability evidence is reviewed. Each carries `mandarin-review-status: editorial-reviewed; band-unverified`. The source candidate pool retains its clearly marked *provisional* band proposals. An entry's lack of lesson assignment does not make it incomplete.
 
 ## Review ledger
 
@@ -50,4 +52,43 @@ The source architecture stores one small tiddler per lexical record and uses bou
 
 ## Execution limitation
 
-This checkout session did not provide a local clone or runnable Node/TiddlyWiki environment. Repository file writes are proposed on a review branch. Therefore local validator, unittest, and static-build results are **not claimed** here. Run the existing GitHub Actions checks on the pull request before merge; the workflow currently triggers for main pushes and manual dispatch, not ordinary pull-request events.
+The initial Work session had no local clone or runnable Node/TiddlyWiki environment, so it could not run local tests. Subsequently, PR validation was added in `.github/workflows/validate-pr.yml` and successfully ran `python3 scripts/validate_wiki.py`, unit tests, the pinned TiddlyWiki static build, and output checks against the proposed branch. See [PR #2](https://github.com/heatwaveqc/D-s-Mandarin-Time/pull/2) for the latest check result. These automated checks establish technical consistency, not native-level linguistic verification.
+
+## Editorial linguistic audit and provenance disposition — 2026-11-11
+
+Scope: individually inspected all 25 new `Vocabulary/*.tid` records for simplified/traditional orthography, displayed Pinyin and neutral-tone/sandhi treatment, POS and sense glosses, the Hanzi–Pinyin–English correspondence of examples, register, and usage guidance. This is an **editorial/linguistic audit, not independent native-speaker verification or full independent dictionary crosschecking of every sense**. Representative externally checked questions included the distinct traditional graph 幾 for 几 (jǐ), the restaurant/hotel senses of 饭店, and wordfreq/SUBTLEX provenance. Original examples were retained or revised; dictionary wording was not reproduced.
+
+| Item(s) | Editorial outcome |
+|---|---|
+| 休息、学生、早上、晚上、朋友、谢谢 | Kept common neutral-tone readings; clarified word-specific usage rather than generic boilerplate. |
+| 再见 | Replaced stilted contextual example with a conventional direct farewell. |
+| 写、同学、老师、茶、问 | Readings and example correspondences acceptable; clarified collocation and syntactic behavior. |
+| 几 | Distinguished interrogative/quantifying use and traditional 幾 from 几 (jī, 'small table'); marked numeral function as well as interrogative. |
+| 多少 | Clarified quantitative versus price questions and the contrast with 几. |
+| 家、工作、请 | Added specific notes on classifier, noun/verb, and polite-verb uses, respectively. |
+| 对不起 | Narrowed 'excuse me' to the apologetic use, distinguishing 请问 for attracting attention. |
+| 忙 | Clarified stative adjectival predicates and the non-intensifying use of 很. |
+| 明天、昨天 | Clarified time-adverbial syntax and lack of verbal tense inflection. |
+| 水 | Clarified measure phrase 一杯 and tone-sandhi transcription. |
+| 没关系 | Distinguished conversational reassurance from literal 'no relation'. |
+| 读 | Corrected misleading 'study aloud': 读 is 'read; study' contextually; 朗读 explicitly means read aloud. |
+| 饭店 | Retained both restaurant and hotel senses; revised example to naturally foreground restaurant meaning. |
+
+Every imported record is **unassigned to lessons**. No frequency band is currently asserted as final in any of these 25 tiddlers. This is deliberate: the pilot's originally proposed 14 fundamental, 10 high-use, and 1 high-availability labels were not supported by verified source ranks or an adjudicated high-availability procedure. They may be reconsidered when source evidence is available.
+
+### Additional checks on the 200-entry candidate inventory
+
+- Fixed five clear traditional-form transcription errors: 我们 → 我們, 听 → 聽, 会 → 會, 门 → 門, 规矩 → 規矩.
+- Improved the candidate glosses for 比武 (verbal use), 山庄 (broader estate/guesthouse sense), and 心法 (method/principles, not only cultivation).
+- Marked locative POS concerns for 这里 and 那里, and adjectival/nominal polyfunctionality for 安全. Their old POS-derived candidate IDs demonstrate why immutable lexeme IDs are a prerequisite for scale.
+- The pool's 50 / 47 / 53 / 50 candidate strata and 200 distinct simplified forms are **editorial sampling**, not a frequency- or uniqueness-adjudicated 200-lexeme selection. It overlaps intentionally with existing textbook entries and with the 25 pilot entries; overlaps must never produce second lexeme records.
+- Common words placed under the wuxia stratum (e.g., 剑, 刀, 毒药, 决斗, 报仇) require general-versus-genre band reassessment. Wuxia relevance is not evidence that a word belongs to the **additional** specialist quota. Proper names such as 武当, 少林, and 峨眉 need a separate explicit policy before counting toward lexical targets. 长剑 requires lexicalization review rather than automatic inclusion as a compound. The broad 'high-availability' group likewise contains likely high-frequency items and needs its own selection evidence.
+
+### Source and licensing result
+
+- **This pilot's public content:** provisional original editorial candidate metadata and example sentences. No downloaded wordfreq or SUBTLEX-CH frequency rows, HSK standard tables, or novel excerpts are redistributed. The immediate public pilot therefore does not depend on an unverified right to republish those source datasets.
+- **Future use of wordfreq:** the upstream [NOTICE](https://github.com/rspeer/wordfreq/blob/master/NOTICE.md) requires explicit credit to Robyn Speer, source acknowledgments including SUBTLEX authors, and compliance with applicable CC BY-SA 4.0 data terms. Freeze the exact code/data release, notice and transformation script before committing frequency-derived metadata.
+- **Future direct use of SUBTLEX-CH:** the [Ghent resource page](https://www.ugent.be/plone_portal/pp/experimentele-psychologie/en/research/documents/subtlexch/overview.htm) and [Cai & Brysbaert (2010)](https://doi.org/10.1371/journal.pone.0010729) authorize/reference research access and citation, not a clearly documented blanket redistribution grant for direct table rehosting. Seek explicit terms or publish independently authored conclusions without copied tables.
+- **HSK and genre resources:** HSK mappings remain blank pending edition-specific entry checks. Third-party transcriptions and copyrighted fiction are not import-ready redistribution sources merely because readable online.
+
+**Decision:** GO for merging this **bounded, editorially reviewed infrastructure/content pilot** after successful branch CI. **CONDITIONAL GO** only for further small curated batches. **NO-GO for the full 7,000 + 1,000–2,000 import** until immutable lexical IDs, per-source licensing/provenance manifests, reproducible ranking and held-out segmentation/coverage methods, and a native/independent adjudication process are established.
