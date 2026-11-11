@@ -10,10 +10,10 @@ The candidate pool remains editorially selected; no wordfreq or SUBTLEX ranks an
 
 ## Language review
 
-The batch passed a manual Mandarin review for simplified/traditional correspondence, Pinyin, broad POS, sense boundary, and example naturalness. Notes:
-- 衣服, 钥匙, 鞋, 饭馆, 面条 and 眼睛 commonly have a neutral-tone final syllable in ordinary Mainland pronunciation. Pinyin shows the lexical neutral tone rather than inventing tone-sandhi spellings.
+The batch received a manual Mandarin review for simplified/traditional correspondence, Pinyin, broad POS, sense boundaries, and example naturalness. This review is editorial, not a two-linguist adjudication. Notes:
+- 衣服 (yīfu) and 钥匙 (yàoshi) commonly have a neutral-tone final syllable in Mainland speech. 饭馆 (fànguǎn), 面条 (miàntiáo), and 眼镜 (yǎnjìng) retain full lexical tones.
 - 雨伞 has underlying third-third tones; the written Pinyin remains yǔsǎn. In ordinary connected speech the first syllable is subject to third-tone sandhi.
-- 眼镜 “glasses” and 眼睛 “eyes” are near-form neighbors but distinct lexical entries; only 眼镜 is in this batch. The pilot separates body-part and object senses.
+- 眼镜 “glasses” and 眼睛 “eyes” are near-form neighbors but distinct lexical entries; only 眼镜 is in this batch.
 - 电话 may denote a telephone or a phone call; both are noted. 地址 is a location/postal address. 饭馆 means restaurant; it is not conflated with 饭店, whose regional/contextual use may include “hotel.”
 - Traditional forms are separately recorded even where they match simplified characters.
 
