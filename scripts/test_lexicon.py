@@ -21,54 +21,53 @@ class LexicalInfrastructureTests(unittest.TestCase):
         self.research = self.root / "research"
         self.research.mkdir()
         self.sources = [
-            {
-                "id": "curriculum-editorial", "kind": "editorial",
-                "source_url": "https://example.org/editorial", "license": "original",
-                "accessed": "2026-11-11", "reuse_status": "editorial-original",
-                "release": "1", "sha256": None
-            },
-            {
-                "id": "wordfreq-zh", "kind": "frequency",
-                "source_url": "https://example.org/wordfreq", "license": "CC BY-SA",
-                "accessed": "2026-11-11", "reuse_status": "not-yet-approved",
-                "release": None, "sha256": None
-            }
+            {"id": "curriculum-editorial", "kind": "editorial",
+             "source_url": "https://example.org/original", "license": "original",
+             "accessed": "2026-11-11", "reuse_status": "editorial-original",
+             "release": "1", "sha256": None},
+            {"id": "wordfreq-zh", "kind": "frequency",
+             "source_url": "https://example.org/wordfreq", "license": "CC BY-SA",
+             "accessed": "2026-11-11", "reuse_status": "not-yet-approved",
+             "release": None, "sha256": None}
         ]
-        self.reg = [{
-            "lexeme_id": "lx-000001", "tiddler_path": "tiddlers/Vocabulary/test.tid",
-            "status": "active", "assigned_batch": "test", "notes": ""
-        }]
+        self.reg = [{"lexeme_id": "lx-000001",
+                     "tiddler_path": "tiddlers/Vocabulary/test.tid",
+                     "status": "active", "assigned_batch": "legacy", "notes": ""}]
+        self.selection = []
         self.evidence = []
         self.write_word()
         self.save()
 
-    def write_word(self, word_id="lx-000001", sources="curriculum-editorial", extras=""):
-        (self.words / "test.tid").write_text(
-            "title: Vocabulary/测试\n"
+    def write_word(self, word_id="lx-000001", extras="", name="test.tid",
+                   hanzi="测试", pinyin="cèshì"):
+        if word_id is None:
+            identity = ""
+        else:
+            identity = f"mandarin-lexeme-id: {word_id}\n"
+        (self.words / name).write_text(
+            f"title: Vocabulary/{hanzi}\n"
             "type: text/vnd.tiddlywiki\n"
             "tags: [[Mandarin Vocabulary]]\n"
             "mandarin-kind: vocabulary\n"
             "mandarin-level: reference\n"
-            f"mandarin-lexeme-id: {word_id}\n"
-            f"mandarin-source-ids: {sources}\n"
-            "mandarin-hanzi: 测试\n"
-            "mandarin-pinyin: cèshì\n"
-            "mandarin-gloss: test\n"
-            "mandarin-pos: verb\n"
+            + identity
+            + f"mandarin-hanzi: {hanzi}\n"
+            + f"mandarin-pinyin: {pinyin}\n"
+            + "mandarin-gloss: test\n"
+            + "mandarin-pos: verb\n"
             + extras + "\n"
             "测试。 — Cèshì. — Test.\n",
-            encoding="utf-8",
-        )
+            encoding="utf-8")
 
     def save(self):
         (self.research / "lexical-sources.json").write_text(
-            json.dumps({"schema_version": 1, "sources": self.sources}), encoding="utf-8"
-        )
-        for filename, columns, rows in (
+            json.dumps({"schema_version": 1, "sources": self.sources}), encoding="utf-8")
+        for name, columns, rows in (
             ("lexeme-id-registry.csv", lex.REGISTRY_COLUMNS, self.reg),
+            ("lexical-selection.csv", lex.SELECTION_COLUMNS, self.selection),
             ("lexical-evidence.csv", lex.EVIDENCE_COLUMNS, self.evidence),
         ):
-            with (self.research / filename).open("w", newline="", encoding="utf-8") as f:
+            with (self.research / name).open("w", newline="", encoding="utf-8") as f:
                 writer = csv.DictWriter(f, fieldnames=columns)
                 writer.writeheader()
                 writer.writerows(rows)
@@ -76,13 +75,24 @@ class LexicalInfrastructureTests(unittest.TestCase):
     def issues(self):
         return lex.validate(self.root)[0]
 
-    def test_valid_editorial_record_without_lesson(self):
+    def make_planned(self):
+        self.reg.append({"lexeme_id": "lx-000002", "tiddler_path": "",
+                         "status": "planned", "assigned_batch": "survey-01", "notes": ""})
+        self.selection.append({
+            "lexeme_id": "lx-000002", "simplified": "新词",
+            "traditional": "新詞", "pinyin": "xīncí", "pos": "noun",
+            "gloss": "new word", "selection_band": "",
+            "candidate_key": "survey:example", "review_status": "selected", "notes": ""})
+        self.save()
+
+    def test_valid_editorial_record_without_lessons_or_source_ids(self):
         errors, counts = lex.validate(self.root)
         self.assertEqual(errors, [])
         self.assertEqual(counts["lexemes"], 1)
+        self.assertEqual(counts["planned"], 0)
 
     def test_missing_lexeme_id(self):
-        self.write_word(word_id="")
+        self.write_word(word_id=None)
         self.assertTrue(any("missing/invalid mandarin-lexeme-id" in e for e in self.issues()))
 
     def test_wrong_registry_path(self):
@@ -90,125 +100,131 @@ class LexicalInfrastructureTests(unittest.TestCase):
         self.save()
         self.assertTrue(any("registry points" in e for e in self.issues()))
 
-    def test_unknown_source(self):
-        self.write_word(sources="made-up-source")
-        self.assertTrue(any("unknown source ID" in e for e in self.issues()))
-
     def test_duplicate_lexical_id(self):
-        (self.words / "other.tid").write_text(
-            (self.words / "test.tid").read_text(encoding="utf-8").replace(
-                "title: Vocabulary/测试", "title: Vocabulary/其他"
-            ), encoding="utf-8"
-        )
+        self.write_word(name="other.tid", hanzi="其他")
         self.assertTrue(any("duplicate lexeme ID" in e for e in self.issues()))
 
-    def test_band_claim_requires_evidence(self):
+    def test_research_only_source_id_rejected(self):
+        self.write_word(extras="mandarin-source-ids: curriculum-editorial\n")
+        self.assertTrue(any("research-only field mandarin-source-ids" in e for e in self.issues()))
+
+    def test_research_only_band_rejected(self):
         self.write_word(extras="mandarin-lexical-band: fundamental\n")
-        self.assertTrue(any("mandarin-band-evidence-id" in e for e in self.issues()))
+        self.assertTrue(any("research-only field mandarin-lexical-band" in e for e in self.issues()))
 
-    def test_verified_band_evidence(self):
-        self.evidence.append({
-            "evidence_id": "ev-1", "lexeme_id": "lx-000001",
-            "source_id": "curriculum-editorial", "claim_type": "band",
-            "claim_value": "fundamental", "review_status": "verified",
-            "reviewed_by": "editorial-auditor", "reviewed_on": "2026-11-11",
-            "notes": "Demonstration only, not evidence of measured frequency"
-        })
-        self.save()
-        self.write_word(extras="mandarin-lexical-band: fundamental\nmandarin-band-evidence-id: ev-1\n")
+    def test_planned_without_tiddler_is_valid(self):
+        self.make_planned()
         self.assertEqual(self.issues(), [])
+        self.assertEqual(lex.validate(self.root)[1]["planned"], 1)
 
-    def test_unverified_band_evidence_rejected(self):
+    def test_planned_without_selection_row_fails(self):
+        self.make_planned()
+        self.selection.clear()
+        self.save()
+        self.assertTrue(any("needs a selection-roster row" in e for e in self.issues()))
+
+    def test_planned_tiddler_path_must_be_blank(self):
+        self.make_planned()
+        self.reg[1]["tiddler_path"] = "tiddlers/Vocabulary/new.tid"
+        self.save()
+        self.assertTrue(any("planned lx-000002 must have empty" in e for e in self.issues()))
+
+    def test_selection_without_registered_id_fails(self):
+        self.make_planned()
+        self.reg.pop()
+        self.save()
+        self.assertTrue(any("not an active/planned registered ID" in e for e in self.issues()))
+
+    def test_duplicate_selection_id_fails(self):
+        self.make_planned()
+        self.selection.append(dict(self.selection[0]))
+        self.save()
+        self.assertTrue(any("duplicate lexeme ID" in e for e in self.issues()))
+
+    def test_unknown_evidence_source_fails(self):
         self.evidence.append({
             "evidence_id": "ev-1", "lexeme_id": "lx-000001",
-            "source_id": "curriculum-editorial", "claim_type": "band",
-            "claim_value": "fundamental", "review_status": "candidate",
-            "reviewed_by": "", "reviewed_on": "", "notes": ""
-        })
+            "source_id": "missing-source", "claim_type": "sense",
+            "claim_value": "test", "review_status": "checked",
+            "reviewed_by": "", "reviewed_on": "", "notes": ""})
         self.save()
-        self.write_word(extras="mandarin-lexical-band: fundamental\nmandarin-band-evidence-id: ev-1\n")
-        self.assertTrue(any("must reference verified" in e for e in self.issues()))
+        self.assertTrue(any("unknown source" in e for e in self.issues()))
 
-    def test_unapproved_frequency_data_rejected(self):
+    def test_unapproved_frequency_claim_fails(self):
         self.evidence.append({
             "evidence_id": "ev-2", "lexeme_id": "lx-000001",
             "source_id": "wordfreq-zh", "claim_type": "frequency",
             "claim_value": "123", "review_status": "verified",
-            "reviewed_by": "editorial-auditor", "reviewed_on": "2026-11-11", "notes": ""
-        })
+            "reviewed_by": "auditor", "reviewed_on": "2026-11-11", "notes": ""})
         self.save()
-        self.write_word(extras="mandarin-frequency-rank: 123\nmandarin-frequency-evidence-id: ev-2\n")
         self.assertTrue(any("requires approved, frozen source" in e for e in self.issues()))
 
-    def test_approved_frequency_claim(self):
+    def test_approved_frequency_claim_allowed_in_research(self):
         self.sources[1].update({"reuse_status": "redistribution-approved",
                                 "release": "v1", "sha256": "a" * 64})
         self.evidence.append({
             "evidence_id": "ev-2", "lexeme_id": "lx-000001",
             "source_id": "wordfreq-zh", "claim_type": "frequency",
             "claim_value": "123", "review_status": "verified",
-            "reviewed_by": "editorial-auditor", "reviewed_on": "2026-11-11",
-            "notes": "Fictitious unit-test example only"
-        })
+            "reviewed_by": "auditor", "reviewed_on": "2026-11-11",
+            "notes": "Fictitious unit-test evidence."})
         self.save()
-        self.write_word(extras="mandarin-frequency-rank: 123\nmandarin-frequency-evidence-id: ev-2\n")
         self.assertEqual(self.issues(), [])
 
-    def test_sequential_allocation(self):
-        after = self.reg + [{
-            "lexeme_id": "lx-000003", "tiddler_path": "tiddlers/Vocabulary/other.tid",
-            "status": "active", "assigned_batch": "next", "notes": ""
-        }]
-        self.assertTrue(any("sequentially" in e for e in lex.check_history(self.reg, after)))
+    def test_register_new_word_without_source_fields(self):
+        import register_lexeme
+        self.write_word(word_id=None, name="new.tid", hanzi="新词", pinyin="xīncí")
+        new_id = register_lexeme.register(self.root, "tiddlers/Vocabulary/new.tid", "batch-03")
+        self.assertEqual(new_id, "lx-000002")
+        self.assertNotIn("mandarin-source-ids:", (self.words / "new.tid").read_text())
+        self.assertEqual(self.issues(), [])
+
+    def test_register_planned_word_preserves_id(self):
+        import register_lexeme
+        self.make_planned()
+        self.write_word(word_id=None, name="new.tid", hanzi="新词", pinyin="xīncí")
+        new_id = register_lexeme.register(
+            self.root, "tiddlers/Vocabulary/new.tid", "publish-01", planned_id="lx-000002")
+        self.assertEqual(new_id, "lx-000002")
+        self.assertEqual(self.reg[0]["status"], "active")
+        self.assertEqual(self.issues(), [])
+        with (self.research / "lexeme-id-registry.csv").open(encoding="utf-8") as fh:
+            rows = list(csv.DictReader(fh))
+        self.assertEqual(rows[1]["status"], "active")
+        self.assertTrue(rows[1]["notes"].startswith("published:"))
+
+    def test_planned_publication_wrong_reading_rejected(self):
+        import register_lexeme
+        self.make_planned()
+        self.write_word(word_id=None, name="new.tid", hanzi="新词", pinyin="xīncǐ")
+        with self.assertRaises(ValueError):
+            register_lexeme.register(self.root, "tiddlers/Vocabulary/new.tid",
+                                     "batch-03", planned_id="lx-000002")
 
     def test_no_id_reuse_after_retirement(self):
         old = [dict(self.reg[0], status="retired", tiddler_path="")]
-        self.assertTrue(any("cannot be reactivated" in e for e in lex.check_history(old, self.reg)))
+        self.assertTrue(any("cannot be reactivated" in e
+                            for e in lex.check_history(old, self.reg)))
 
-    def test_rename_requires_note(self):
+    def test_planned_to_active_requires_publication_note(self):
+        old = [{"lexeme_id": "lx-000002", "status": "planned", "tiddler_path": "",
+                "assigned_batch": "survey", "notes": ""}]
+        after = [dict(old[0], status="active", tiddler_path="tiddlers/Vocabulary/new.tid")]
+        self.assertTrue(any("published:" in e for e in lex.check_history(old, after)))
+        after[0]["notes"] = "published: batch-03"
+        self.assertEqual(lex.check_history(old, after), [])
+
+    def test_sequential_allocation(self):
+        after = self.reg + [{
+            "lexeme_id": "lx-000003", "tiddler_path": "",
+            "status": "planned", "assigned_batch": "survey", "notes": ""}]
+        self.assertTrue(any("sequentially" in e for e in lex.check_history(self.reg, after)))
+
+    def test_rename_requires_audit_note(self):
         after = [dict(self.reg[0], tiddler_path="tiddlers/Vocabulary/new-name.tid")]
         self.assertTrue(any("moved without" in e for e in lex.check_history(self.reg, after)))
-        after[0]["notes"] = "moved: renamed file during lexical reanalysis"
+        after[0]["notes"] = "moved: renamed after lexical review"
         self.assertEqual(lex.check_history(self.reg, after), [])
-
-
-    def new_unregistered_word(self):
-        original = (self.words / "test.tid").read_text(encoding="utf-8")
-        original = original.replace("title: Vocabulary/测试", "title: Vocabulary/新词")
-        original = original.replace("mandarin-lexeme-id: lx-000001\n", "")
-        original = original.replace("mandarin-source-ids: curriculum-editorial\n", "")
-        (self.words / "new.tid").write_text(original, encoding="utf-8")
-
-    def test_register_lexeme_allocates_and_preserves_existing(self):
-        import register_lexeme
-        self.new_unregistered_word()
-        new_id = register_lexeme.register(self.root, "tiddlers/Vocabulary/new.tid", "batch-03")
-        self.assertEqual(new_id, "lx-000002")
-        self.assertIn("mandarin-lexeme-id: lx-000002",
-                      (self.words / "new.tid").read_text(encoding="utf-8"))
-        self.assertEqual(self.issues(), [])
-        self.assertTrue(any(r["lexeme_id"] == "lx-000002"
-                            and r["assigned_batch"] == "batch-03"
-                            for r in self._read_registry()))
-
-    def _read_registry(self):
-        with (self.research / "lexeme-id-registry.csv").open(encoding="utf-8", newline="") as f:
-            return list(csv.DictReader(f))
-
-    def test_register_lexeme_rejects_duplicate(self):
-        import register_lexeme
-        with self.assertRaises(ValueError):
-            register_lexeme.register(self.root, "tiddlers/Vocabulary/test.tid", "batch-03")
-
-    def test_register_lexeme_dry_run(self):
-        import register_lexeme
-        self.new_unregistered_word()
-        result = register_lexeme.register(self.root, "tiddlers/Vocabulary/new.tid",
-                                          "batch-03", dry_run=True)
-        self.assertEqual(result, "lx-000002")
-        self.assertEqual(len(self._read_registry()), 1)
-        self.assertNotIn("mandarin-lexeme-id:",
-                         (self.words / "new.tid").read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":
