@@ -22,7 +22,7 @@ A tiddler is a modular record. A vocabulary item can be linked by many lessons w
 !! Metadata
 * `mandarin-kind`: navigation, roadmap, grammar, vocabulary, character, lesson, reading, exercise
 * `mandarin-level`: foundation, beginner, intermediate, advanced (provisional)
-* `mandarin-prerequisites`: space-delimited list of tiddler titles using `[[Title With Spaces]]`
+* `mandarin-prerequisites`: space-delimited list of tiddler titles using bracketed tiddler titles when they contain spaces
 * Word fields: `mandarin-hanzi`, `mandarin-pinyin`, `mandarin-gloss`, `mandarin-pos`
 * `mandarin-summary`: short descriptions for the lesson index
 
