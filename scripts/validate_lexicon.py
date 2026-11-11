@@ -17,7 +17,7 @@ SELECTION_COLUMNS = ["lexeme_id", "simplified", "traditional", "pinyin", "pos", 
                      "selection_band", "candidate_key", "review_status", "notes"]
 RESEARCH_ONLY_FIELDS = ("mandarin-source-ids", "mandarin-lexical-band", "mandarin-band-evidence-id",
                         "mandarin-frequency-rank", "mandarin-frequency-evidence-id",
-                        "mandarin-frequency-zipf", "mandarin-frequency-score",
+                        "mandarin-frequency-zipf", "mandarin-frequency-score", "mandarin-review-status",
                         "mandarin-hsk-level", "mandarin-hsk-evidence-id", "mandarin-hsk-edition")
 EVIDENCE_COLUMNS = ["evidence_id", "lexeme_id", "source_id", "claim_type", "claim_value",
                     "review_status", "reviewed_by", "reviewed_on", "notes"]
@@ -157,7 +157,7 @@ def validate(project_root: Path = PROJECT_ROOT) -> tuple[list[str], dict[str, in
         if not eid or eid in evidence:
             errors.append(f"Evidence: blank or duplicate ID {eid!r}")
         evidence[eid] = row
-        if lid not in id_to_record or id_to_record[lid].get("status") != "active":
+        if lid not in id_to_record or id_to_record[lid].get("status") not in {"active", "planned"}:
             errors.append(f"Evidence {eid}: unknown/retired lexeme ID {lid!r}")
         if sid not in sources:
             errors.append(f"Evidence {eid}: unknown source {sid!r}")
