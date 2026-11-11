@@ -10,7 +10,7 @@ This repository is intentionally independent of GATES, while following the same 
 
 - Once GitHub Pages is configured to use **GitHub Actions**, browse `https://heatwaveqc.github.io/D-s-Mandarin-Time/`.
 - The wiki is browser-only and **read-only as a canonical source**: browser edits won't be saved back to this repository.
-- Each push to `main` checks content integrity and rebuilds the static site.
+- Each push to `main` checks content integrity and rebuilds the static site. Before Pages is enabled, the workflow uploads the compiled `index.html` as a downloadable Actions artifact. After Pages is enabled, the same workflow publishes the site.
 - To build locally (optional): `npx --yes tiddlywiki@5.4.1 . --build index` (output `public/index.html`).
 
 ## Content model

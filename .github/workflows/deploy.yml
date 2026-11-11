@@ -47,15 +47,25 @@ jobs:
           echo "Built static wiki:"
           ls -lh public/index.html
 
+      - name: Upload portable HTML for preview and offline use
+        uses: actions/upload-artifact@v4
+        with:
+          name: mandarin-wiki-static-html
+          path: public/index.html
+
+      # GitHub Pages is a one-time repository setting; until enabled, CI can still pass.
       - name: Configure Pages
+        if: ${{ github.event.repository.has_pages }}
         uses: actions/configure-pages@v5
 
       - name: Upload Pages artifact
+        if: ${{ github.event.repository.has_pages }}
         uses: actions/upload-pages-artifact@v3
         with:
           path: public
 
   deploy:
+    if: github.event.repository.has_pages
     needs: build
     runs-on: ubuntu-latest
     environment:
