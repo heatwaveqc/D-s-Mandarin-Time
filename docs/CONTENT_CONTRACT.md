@@ -1,4 +1,4 @@
-# Mandarin content contract (v1.0)
+# Mandarin content contract (v1.1)
 
 ## General structure
 
@@ -10,7 +10,7 @@ The content is organized by **kind**, not by rigid lesson order. The course orde
 | --- | --- | --- |
 | `navigation` | Indexes, home and reference guides | `title`, `mandarin-kind`, `mandarin-level` |
 | `grammar` | A single reusable grammatical concept | common fields; `mandarin-prerequisites` where appropriate |
-| `vocabulary` | Lexical item (not just character glyph) | `mandarin-hanzi`, `mandarin-pinyin`, `mandarin-gloss`, `mandarin-pos` |
+| `vocabulary` | Lexical item (not just character glyph) | `mandarin-lexeme-id`, `mandarin-source-ids`, `mandarin-hanzi`, `mandarin-pinyin`, `mandarin-gloss`, `mandarin-pos` |
 | `character` | Individual graph and its composition | `mandarin-hanzi`, `mandarin-pinyin`, `mandarin-gloss` |
 | `lesson` | Objectives, guided explanations and tasks | `mandarin-summary`, `mandarin-prerequisites` |
 | `reading` | Text with hideable pronunciation/meaning | prerequisites, controls on introduced vocabulary |
@@ -21,9 +21,9 @@ All regular content records need `tags`, `type: text/vnd.tiddlywiki`, `mandarin-
 
 ## Curriculum lexical standard
 
-The binding [vocabulary target standard](VOCABULARY_TARGET_STANDARD.md) is **2k fundamental + 3k high-use + 2k high-availability (7k general), plus 1k–2k additional wuxia/xianxia-specific lexical entries**. Goal is 95–98% measured token coverage in separately evaluated domains, never a promised universal result. `mandarin-lexical-band` is optional for provisional pilot words, and when set must be one of `fundamental`, `high-use`, `high-availability`, `wuxia-specialist`. Overlapping topics go under `mandarin-topics`; avoid duplicate lexical entries.
+The binding [vocabulary target standard](VOCABULARY_TARGET_STANDARD.md) is **2k fundamental + 3k high-use + 2k high-availability (7k general), plus 1k–2k additional wuxia/xianxia-specific lexical entries**. Goal is 95–98% measured token coverage in separately evaluated domains, never a promised universal result. `mandarin-lexical-band` is optional for provisional pilot words, and when set must be one of `fundamental`, `high-use`, `high-availability`, `wuxia-specialist`. Overlapping topics go under `mandarin-topics`; avoid duplicate lexical entries. Any asserted `mandarin-lexical-band` now requires a verified `mandarin-band-evidence-id` recorded in the lexical evidence ledger.
 
-See also [the source survey](VOCABULARY_SOURCE_SURVEY.md). Final ranks require corpus/source/edition metadata and rights check; no bulk reproduction of copyrighted data.
+See also [the source survey](VOCABULARY_SOURCE_SURVEY.md) and [the lexical identity/provenance contract](LEXICAL_DATA_CONTRACT.md). All vocabulary entries require unique opaque IDs, active registry entries and source identifiers. New IDs are appended, never recycled. Exact source-backed frequency/HSK claims require verified evidence tied to a frozen version and approved redistribution terms. Final ranks require corpus/source/edition metadata and rights check; no bulk reproduction of copyrighted data.
 
 ## Dependencies
 
@@ -59,11 +59,11 @@ This is currently a **conceptual progression**, not an automatic per-learner gat
 1. Audio clips / blind listening cards with playback testing.
 2. Mastery taxonomy: recognition, meaning recall, pronunciation, production, listening and transfer.
 3. Grammar index by typological features, plus explicit lesson unlocks.
-4. Stable per-lexeme IDs and homograph disambiguation when vocabulary list scales.
+4. Stable per-lexeme IDs and registry validation are implemented; homograph and sense adjudication remain an ongoing content responsibility.
 5. More accurate reading-level statistics and graded literary corpus.
 
 ## Publishing
 
-`python3 scripts/validate_wiki.py` validates metadata. `tiddlywiki . --build index` builds `public/index.html`, using TiddlyWiki 5.4.1. GitHub Actions always validates, builds, and uploads a portable HTML artifact. If Pages is enabled it also uploads the Pages artifact and deploys. Set Pages to **GitHub Actions** under repository settings, then re-run or dispatch the workflow. No persistent Node service is needed.
+`python3 scripts/validate_wiki.py` validates metadata, lexical identity, source registry and evidence consistency. The PR workflow also checks the registry against `main` to prevent reassignment of previously allocated IDs. `tiddlywiki . --build index` builds `public/index.html`, using TiddlyWiki 5.4.1. GitHub Actions always validates, builds, and uploads a portable HTML artifact. If Pages is enabled it also uploads the Pages artifact and deploys. Set Pages to **GitHub Actions** under repository settings, then re-run or dispatch the workflow. No persistent Node service is needed.
 
 For large vocabulary imports and scope-limited progress reporting, see `docs/WORK_POPULATION_GUIDE.md`.

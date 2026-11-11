@@ -146,14 +146,18 @@ def validate(root: Path = TIDDLERS) -> tuple[list[str], dict[str, int]]:
 
 
 def main() -> int:
+    from validate_lexicon import validate as validate_lexicon
     errors, counts = validate()
+    lexicon_errors, lexicon_counts = validate_lexicon(ROOT)
+    errors.extend(lexicon_errors)
     print("Tiddlers:", sum(counts.values()), "categories:", dict(sorted(counts.items())))
+    print("Lexical registry:", dict(sorted(lexicon_counts.items())))
     if errors:
         for error in errors:
             print("ERROR:", error, file=sys.stderr)
         print(f"FAILED: {len(errors)} issue(s)", file=sys.stderr)
         return 1
-    print("PASS: metadata, link targets, prerequisite references and DAG")
+    print("PASS: metadata, links, prerequisites, lexical IDs, provenance, and evidence")
     return 0
 
 

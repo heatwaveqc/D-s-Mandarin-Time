@@ -30,7 +30,7 @@ See [Target Vocabulary Standard](docs/VOCABULARY_TARGET_STANDARD.md) and [Candid
 - `tiddlers/Exercises`: written assessments and answer keys.
 - `tiddlers/System`: wiki title, default tab, helper templates.
 
-All *course* records use `mandarin-kind` and `mandarin-level`. Vocabulary has `mandarin-hanzi`, `mandarin-pinyin`, `mandarin-gloss`, and `mandarin-pos`. Grammar and lessons can specify `mandarin-prerequisites` as a TiddlyWiki title list, e.g. `[[Grammar/SVO Word Order]] [[Grammar/Predicate Negation]]`. Field names use the `mandarin-` prefix to avoid conflicts with TiddlyWiki internals.
+All *course* records use `mandarin-kind` and `mandarin-level`. Vocabulary requires a stable `mandarin-lexeme-id`, source provenance IDs, `mandarin-hanzi`, `mandarin-pinyin`, `mandarin-gloss`, and `mandarin-pos`. Every existing entry has been backfilled with a unique opaque ID; IDs are allocated by the [Lexical Data Contract](docs/LEXICAL_DATA_CONTRACT.md), not by spelling, POS or lesson. Grammar and lessons can specify `mandarin-prerequisites` as a TiddlyWiki title list, e.g. `[[Grammar/SVO Word Order]] [[Grammar/Predicate Negation]]`. Field names use the `mandarin-` prefix to avoid conflicts with TiddlyWiki internals.
 
 Use real grammatical descriptions, give pinyin on all new Chinese example sentences, and avoid presenting character-component mnemonics as guaranteed etymologies.
 
@@ -47,4 +47,4 @@ The wiki holds shared course material. **Do not commit sensitive personal speech
 
 See [[Wiki Guide]] in the published site for the browsing workflow and links among content types.
 
-Future bulk population: follow [Work vocabulary handoff](docs/WORK_POPULATION_GUIDE.md) to ingest the master lexicon first, assign lessons separately where useful, and avoid rendering the entire corpus at once.
+Future bulk population: follow [Work vocabulary handoff](docs/WORK_POPULATION_GUIDE.md) and [Lexical Data Contract](docs/LEXICAL_DATA_CONTRACT.md). New entries must update the stable-ID registry and use license-safe, versioned research evidence. Work leaves vocabulary imports as draft PRs for independent editorial review before merging; no mass ingest is authorized yet.
