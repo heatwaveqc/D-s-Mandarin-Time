@@ -8,7 +8,7 @@ mandarin-traditional: 昨天
 mandarin-pinyin: zuótiān
 mandarin-gloss: yesterday
 mandarin-pos: noun; time word
-mandarin-lexical-band: fundamental
+mandarin-review-status: editorial-reviewed; band-unverified
 mandarin-registers: general
 mandarin-topics: everyday
 
@@ -22,4 +22,4 @@ mandarin-topics: everyday
 昨天我在家休息。 — Zuótiān wǒ zài jiā xiūxi. — Yesterday I rested at home.
 
 !! Usage note
-This is a provisional pilot entry; consult context to select the appropriate sense.
+A time expression ('yesterday'). Mandarin verbs do not automatically mark past tense; time reference can come from words such as 昨天.

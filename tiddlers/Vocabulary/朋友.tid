@@ -8,7 +8,7 @@ mandarin-traditional: 朋友
 mandarin-pinyin: péngyou
 mandarin-gloss: friend
 mandarin-pos: noun
-mandarin-lexical-band: fundamental
+mandarin-review-status: editorial-reviewed; band-unverified
 mandarin-registers: general
 mandarin-topics: everyday
 
@@ -22,4 +22,4 @@ mandarin-topics: everyday
 我的朋友在学校工作。 — Wǒ de péngyou zài xuéxiào gōngzuò. — My friend works at a school.
 
 !! Usage note
-Final 友 is commonly neutral.
+The second syllable is commonly neutral. 我的朋友 (wǒ de péngyou) means 'my friend'.

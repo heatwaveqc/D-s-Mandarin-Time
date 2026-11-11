@@ -8,7 +8,7 @@ mandarin-traditional: 晚上
 mandarin-pinyin: wǎnshang
 mandarin-gloss: evening; at night
 mandarin-pos: noun; time word
-mandarin-lexical-band: fundamental
+mandarin-review-status: editorial-reviewed; band-unverified
 mandarin-registers: general
 mandarin-topics: everyday
 
@@ -22,4 +22,4 @@ mandarin-topics: everyday
 晚上我们在家吃饭。 — Wǎnshang wǒmen zài jiā chī fàn. — We eat at home in the evening.
 
 !! Usage note
-Final 上 is commonly neutral in this word.
+A time expression for 'evening' or 'at night'. The second syllable is commonly neutral.

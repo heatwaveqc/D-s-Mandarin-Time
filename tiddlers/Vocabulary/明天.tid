@@ -8,7 +8,7 @@ mandarin-traditional: 明天
 mandarin-pinyin: míngtiān
 mandarin-gloss: tomorrow
 mandarin-pos: noun; time word
-mandarin-lexical-band: fundamental
+mandarin-review-status: editorial-reviewed; band-unverified
 mandarin-registers: general
 mandarin-topics: everyday
 
@@ -22,4 +22,4 @@ mandarin-topics: everyday
 我们明天去学校。 — Wǒmen míngtiān qù xuéxiào. — We’re going to school tomorrow.
 
 !! Usage note
-This is a provisional pilot entry; consult context to select the appropriate sense.
+A time expression ('tomorrow') that can precede the subject or predicate without an English-style preposition 'on'.

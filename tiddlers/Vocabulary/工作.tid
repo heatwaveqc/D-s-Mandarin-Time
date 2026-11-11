@@ -8,7 +8,7 @@ mandarin-traditional: 工作
 mandarin-pinyin: gōngzuò
 mandarin-gloss: work; job; to work
 mandarin-pos: noun; verb
-mandarin-lexical-band: high-use
+mandarin-review-status: editorial-reviewed; band-unverified
 mandarin-registers: general
 mandarin-topics: everyday
 
@@ -22,4 +22,4 @@ mandarin-topics: everyday
 他今天不工作，在家休息。 — Tā jīntiān bù gōngzuò, zài jiā xiūxi. — He isn’t working today; he is resting at home.
 
 !! Usage note
-This is a provisional pilot entry; consult context to select the appropriate sense.
+Both a noun ('job; work') and a verb ('work'). Compare 这是我的工作 (Zhè shì wǒ de gōngzuò, 'This is my job').
