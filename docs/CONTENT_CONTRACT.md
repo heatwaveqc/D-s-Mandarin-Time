@@ -27,7 +27,9 @@ See also [the source survey](VOCABULARY_SOURCE_SURVEY.md). Final ranks require c
 
 ## Dependencies
 
-Vocabulary lesson buckets are specified with `mandarin-lessons: L01 L03`. One word may be introduced or revisited in multiple lessons. Do not put the full target vocabulary in a single tiddler or an unbounded auto-rendered index: all public vocabulary lists should use lesson-scoped `contains:mandarin-lessons[Lxx]` filters.
+**Vocabulary is a standalone lexicon, independent of lesson sequencing.** `mandarin-lessons` is optional and may be omitted for unassigned words. When a word is deliberately introduced or reviewed in lessons, assign `mandarin-lessons: L01 L03`; every specified ID must have an existing `Lesson Vocabulary/LNN` index. The validator checks supplied IDs but does not require any. Do not invent lessons merely to make vocabulary records valid. A word can be introduced or revisited in multiple lessons without duplicating its lexical record.
+
+The vocabulary index and sidebar search can reach entries regardless of lesson membership. Lesson pages may use bounded `contains:mandarin-lessons[Lxx]` filters, which intentionally exclude unassigned words. Do not put the full target vocabulary in a single tiddler or an unbounded auto-rendered list.
 
 Audio fields are `mandarin-audio`, `mandarin-audio-status`, and `mandarin-audio-license`. See `docs/AUDIO_ASSETS.md`; the first sample is a credited human recording, not neural TTS.
 
