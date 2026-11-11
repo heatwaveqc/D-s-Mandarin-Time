@@ -63,6 +63,10 @@ Sanle Zhang, Pengyuan Liu, and Hu Zhang (2020). *A Corpus-based Contrastive Anal
 https://www.routledge.com/x/x/p/book/9780415455862  
 Richard Xiao (2009). A Frequency Dictionary of Mandarin Chinese: Core Vocabulary for Learners, based on a 50m-word balanced corpus with 5,000 words.
 
+## Supplemental dictionary reference identified during the second pilot
+
+**CC-CEDICT** is a useful, downloadable Chinese-English reference for checking traditional/simplified forms, Pinyin, broad POS, and sense distinctions. Its official editor states that the data is licensed **CC BY-SA 4.0**, with attribution and ShareAlike obligations. The site’s search is live/current; a stable dated release and hash should be recorded before source-derived data is incorporated. The second pilot did not copy CC-CEDICT definitions, examples, or ranking data. Check the repository’s own licensing and preserve the required notices before redistributing any adapted lexical database. Official source and license: <https://cc-cedict.org/editor/editor.php?handler=Main> and <https://cc-cedict.org/editor/editor.php?handler=Download>.
+
 ## Conclusion
 
 **Do not start from a blank slate. Do not simply import the first 7,000 HSK entries.** There are enough suitable pre-existing candidates to seed the general tiers. The missing deliverable is a **curated, multi-register, license-aware, deduplicated Mandarin “De Mauro style” list**, especially the nonfrequency high-availability band and the specialized wuxia/xianxia layer.
