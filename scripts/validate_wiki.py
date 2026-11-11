@@ -111,9 +111,9 @@ def validate(root: Path = TIDDLERS) -> tuple[list[str], dict[str, int]]:
         if title.startswith("$:/"):
             continue
         if fields.get("mandarin-kind") == "vocabulary":
+            # Lesson membership is optional: the lexicon is independent of the course.
+            # Assigned lessons must still point to existing lesson-vocabulary indexes.
             lesson_ids = title_list(fields.get("mandarin-lessons", ""))
-            if not lesson_ids:
-                errors.append(f"{title}: missing mandarin-lessons membership")
             for lesson_id in lesson_ids:
                 if f"Lesson Vocabulary/{lesson_id}" not in found:
                     errors.append(f"{title}: unknown vocabulary lesson {lesson_id!r}")
