@@ -1,4 +1,4 @@
-# Mandarin content contract (v1.1)
+# Mandarin content contract (v1.2)
 
 ## General structure
 
@@ -10,7 +10,7 @@ The content is organized by **kind**, not by rigid lesson order. The course orde
 | --- | --- | --- |
 | `navigation` | Indexes, home and reference guides | `title`, `mandarin-kind`, `mandarin-level` |
 | `grammar` | A single reusable grammatical concept | common fields; `mandarin-prerequisites` where appropriate |
-| `vocabulary` | Lexical item (not just character glyph) | `mandarin-lexeme-id`, `mandarin-source-ids`, `mandarin-hanzi`, `mandarin-pinyin`, `mandarin-gloss`, `mandarin-pos` |
+| `vocabulary` | Learner-facing lexical item | `mandarin-lexeme-id`, `mandarin-hanzi`, `mandarin-pinyin`, `mandarin-gloss`, `mandarin-pos` |
 | `character` | Individual graph and its composition | `mandarin-hanzi`, `mandarin-pinyin`, `mandarin-gloss` |
 | `lesson` | Objectives, guided explanations and tasks | `mandarin-summary`, `mandarin-prerequisites` |
 | `reading` | Text with hideable pronunciation/meaning | prerequisites, controls on introduced vocabulary |
@@ -21,9 +21,11 @@ All regular content records need `tags`, `type: text/vnd.tiddlywiki`, `mandarin-
 
 ## Curriculum lexical standard
 
-The binding [vocabulary target standard](VOCABULARY_TARGET_STANDARD.md) is **2k fundamental + 3k high-use + 2k high-availability (7k general), plus 1k–2k additional wuxia/xianxia-specific lexical entries**. Goal is 95–98% measured token coverage in separately evaluated domains, never a promised universal result. `mandarin-lexical-band` is optional for provisional pilot words, and when set must be one of `fundamental`, `high-use`, `high-availability`, `wuxia-specialist`. Overlapping topics go under `mandarin-topics`; avoid duplicate lexical entries. Any asserted `mandarin-lexical-band` now requires a verified `mandarin-band-evidence-id` recorded in the lexical evidence ledger.
+The binding [vocabulary target standard](VOCABULARY_TARGET_STANDARD.md) is **2k fundamental + 3k high-use + 2k high-availability (7k general), plus 1k–2k genuinely additional wuxia/xianxia lexical entries**. The 95–98% token-coverage target is a separately measured objective for spoken Mandarin, general writing and genre fiction, never a guarantee from word count.
 
-See also [the source survey](VOCABULARY_SOURCE_SURVEY.md) and [the lexical identity/provenance contract](LEXICAL_DATA_CONTRACT.md). All vocabulary entries require unique opaque IDs, active registry entries and source identifiers. New IDs are appended, never recycled. Exact source-backed frequency/HSK claims require verified evidence tied to a frozen version and approved redistribution terms. Final ranks require corpus/source/edition metadata and rights check; no bulk reproduction of copyrighted data.
+**Selection is now a distinct research stage before vocabulary publication.** Follow [Survey-first Lexicon Standard](LEXICON_SURVEY_STANDARD.md). Overcomplete candidates are adjudicated/pruned into an accepted roster; accepted items may have a permanent ID with registry status `planned` and **no corresponding .tid file**. Published wiki entries use status `active` and their stable ID. Keep the source/provenance ledger, frequency rankings, HSK crosswalks, review status and lexical selection bands outside the tiddlers. Original content is required; preserve any licensing/attribution obligations for actually adapted or redistributed material.
+
+See [Lexical Data Contract](LEXICAL_DATA_CONTRACT.md) and [Work Population Guide](WORK_POPULATION_GUIDE.md). The validation system checks both research registry integrity and wiki content without forcing research candidates into lessons or pages.
 
 ## Dependencies
 

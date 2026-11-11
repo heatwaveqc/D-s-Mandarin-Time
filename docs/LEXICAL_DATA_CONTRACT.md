@@ -1,21 +1,50 @@
-# Lexical identity, provenance, and evidence contract — v1.0
+# Lexical identity, selection and provenance contract — v2.0
 
-Adopted: 2026-11-11. Canonical repository: `heatwaveqc/D-s-Mandarin-Time`.
+Adopted 2026-11-11. Read alongside [Survey-first Lexicon Standard](LEXICON_SURVEY_STANDARD.md), [Vocabulary Target Standard](VOCABULARY_TARGET_STANDARD.md) and [Work Population Guide](WORK_POPULATION_GUIDE.md).
 
-This contract concerns the **independent lexical inventory**, not the lesson prerequisite graph. Every public vocabulary record now has an immutable ID, explicit editorial/source attribution, and validated research references. The validator establishes **data integrity**, not the correctness of its linguistic claims.
+## Design boundary
 
-## Lexeme identity
+**Lexicon selection is research; TiddlyWiki publication is production; lessons are curriculum.** These are separate stages and must not force one another. Source provenance, frequency/prevalence measurements, HSK mappings, research review status, band/category selection, and genre-selection evidence belong in the **research layer**, not inside learner-facing vocabulary tiddlers. Rights-required attribution for adapted material must remain accessible to the user under the relevant license; do not confuse external research provenance with the legal requirements for published reuse.
 
-- Each `mandarin-kind: vocabulary` tiddler requires a unique `mandarin-lexeme-id: lx-NNNNNN`, using six decimal digits. The opaque number **never encodes Hanzi, Pinyin, part of speech, sense, lesson, or frequency band**. Examples: `lx-000020` belongs to the already-existing 师父 record; it must never be reassigned.
-- For local/Work checkouts, register a newly written `.tid` lacking an ID with `python3 scripts/register_lexeme.py tiddlers/Vocabulary/<filename>.tid --batch batch-03`. The script allocates the next ID, inserts `mandarin-lexeme-id` and default `mandarin-source-ids` fields, and appends the registry row. Use `--dry-run` to preview without writing; GitHub-only editing workflows can make the equivalent paired changes manually.
-- IDs are allocated sequentially from the highest ever reserved ID. The 76 pre-infrastructure entries were backfilled `lx-000001` through `lx-000076` on 2026-11-11; the next new entry is `lx-000077`. The backfill order is an arbitrary migration order, **not a rank or lesson order**.
-- `research/lexeme-id-registry.csv` binds each ID to one active source tiddler path. New IDs require **both** a `.tid` metadata addition and a registry row in the same PR. The PR history check disallows removal/reuse of previously allocated IDs and nonsequential allocation.
-- An editorial change to pronunciation, traditional/simplified form, gloss, POS, register, or lesson assignments **does not change the existing ID**. If a file is renamed/moved, retain the ID and update its registry path with a `moved:` note explaining the migration. Reviewers must assess whether the same lexeme is still represented.
-- If a record must be permanently discontinued, reserve the old ID as `retired` with an empty tiddler path, and document why in `notes`. Its ID cannot be reused. For a genuine split into two lexical entries, retain one identity only where justified, allocate a **new** ID for the new lexical entity, and record the editorial reasoning.
-- `research/vocabulary-candidate-pool-200.csv` contains historical experimental `cmn:<form>:<POS>` **candidate keys**; **they are not registered lexeme IDs**, must not be copied into `mandarin-lexeme-id`, and should not be used as stable references. When promoting a candidate to the wiki, first search existing records by simplified/traditional/Pinyin/sense and reconcile duplicates.
-- Orthographic homographs need not share an ID: e.g. a genuinely unrelated reading/sense or POS-separated lexical item may require its own, but do not split ordinary polysemy simply because one headword has multiple dictionary glosses. Review heteronyms, separable verbs, productive compounds, and proper names explicitly. One lexeme may occur in multiple registers or genres without duplicate IDs.
+The already-published 76 vocabulary tiddlers remain in the wiki. They are not assumed to have passed the eventual full-corpus selection process. Research candidates may be collected and rejected without minting permanent lexical IDs or publishing pages.
 
-## Metadata required for every vocabulary tiddler
+## Immutable identity and registry states
+
+A permanent lexical ID is an opaque `lx-NNNNNN` (six decimal digits) that **never encodes Hanzi, Pinyin, POS, band, frequency, lesson, or sense**. The 76 existing published records hold IDs `lx-000001` through `lx-000076`. Their numerical order is arbitrary, not a rank. IDs are allocated sequentially and never recycled.
+
+`research/lexeme-id-registry.csv` is the authoritative lifecycle registry:
+
+- `planned`: an accepted lexical item with an immutable ID, a **blank** `tiddler_path`, and a corresponding `research/lexical-selection.csv` row. No wiki page is required.
+- `active`: a published `Vocabulary/*.tid` exists and its `mandarin-lexeme-id` matches exactly one active registry row and path.
+- `retired`: the ID is reserved forever, the path must be empty and the retirement documented. Never reassign it or restore it to active.
+
+A `planned → active` transition preserves the ID, records a `published:` note in the registry and creates one new vocabulary tiddler. An active file rename retains its ID and requires a `moved:` audit note. An active record cannot revert to planned; a retired ID never returns. The PR history check compares the new registry with `main` to prevent silent ID recycling, deletions and unreviewed lifecycle changes.
+
+The existing 200-candidate survey's `candidate_key` values (e.g. `cmn:我:pronoun`) are **temporary research keys, not permanent lexical IDs**. Reanalyze lexical identity before allocating planned IDs. Heteronyms, unrelated homographs, polyfunctional verbs, separable verbs, lexicalized expressions, regional variants, proper names, and genre-specific meanings require explicit decisions. Do not split ordinary polysemy merely because several English glosses exist.
+
+## Accepted lexical selection records
+
+`research/lexical-selection.csv` describes reserved planned lexical items separately from wiki pages. Its columns are:
+
+```csv
+lexeme_id,simplified,traditional,pinyin,pos,gloss,selection_band,candidate_key,review_status,notes
+```
+
+Every planned ID must have exactly one row with meaningful form/Pinyin/POS/gloss, a candidate key and a `selected` or `needs-review` status. `selection_band` may be left empty until the classification is adjudicated, otherwise it must match the four approved band names. Research review notes must distinguish editorial selection from independent native-language verification. Existing active legacy entries may be added to the roster, but that is not required merely to retain their ID and existing wiki entry.
+
+The full survey may be larger and use a separate candidate table/ledger. [Survey-first Lexicon Standard](LEXICON_SURVEY_STANDARD.md) sets the intended overcomplete scope, deduplication process, independent coverage measurements, and accepted-roster freeze.
+
+## Source registry and evidence
+
+`research/lexical-sources.json` holds stable source IDs, kind, URL, licensing/reuse status, version, checksum and acquisition date. The current named resources (wordfreq zh, SUBTLEX-CH, HSK 2025 and CC-CEDICT) remain reference/pending rather than approved bulk redistribution sources unless explicitly upgraded with the exact licensed dataset and SHA-256.
+
+`research/lexical-evidence.csv` stores research claims with fields `evidence_id,lexeme_id,source_id,claim_type,claim_value,review_status,reviewed_by,reviewed_on,notes`. Evidence may attach to **planned or active** IDs. A verified editorial review includes reviewer/date but does **not** imply independent native-speaker adjudication. Permission-restricted frequency/HSK tables must remain in appropriate private research storage unless their public reuse rights are explicitly confirmed. Public source-derived numerical frequency or HSK values still require an approved, frozen source in the evidence validator.
+
+Lexical band assignments are **research decisions**, not intrinsic properties of a word. Triangulate spoken/written frequency, validate high-availability judgments independently of rank, distinguish genuinely additional wuxia terminology from ordinary vocabulary, and evaluate held-out token coverage independently by domain. Do not fabricate rankings or treat a 7,000-word target as a guaranteed coverage percentage.
+
+## Published vocabulary format
+
+The wiki-facing record stays focused on the language:
 
 ```text
 title: Vocabulary/师父
@@ -24,7 +53,6 @@ tags: [[Mandarin Vocabulary]]
 mandarin-kind: vocabulary
 mandarin-level: beginner
 mandarin-lexeme-id: lx-000020
-mandarin-source-ids: curriculum-editorial
 mandarin-hanzi: 师父
 mandarin-pinyin: shīfu
 mandarin-gloss: master; respected mentor
@@ -32,55 +60,16 @@ mandarin-pos: noun
 mandarin-lessons: L01 L03
 ```
 
-This is an **existing-entry example**, not a template ID to reuse. New unsequenced vocabulary typically uses `mandarin-level: reference` and **omits `mandarin-lessons`**. Preserve existing lesson links; a lexicon entry may exist indefinitely without any.
+This is an **existing** ID and must not be copied to new entries. Include useful contextual Hanzi–tone-marked-Pinyin–English examples, collocations, grammatical behavior and any relevant register/sense distinctions. Traditional forms are allowed as linguistic metadata. **Omit `mandarin-source-ids`, `mandarin-lexical-band`, `mandarin-review-status`, `mandarin-hsk-*`, `mandarin-frequency-*` and `mandarin-*-evidence-id` fields from `.tid` files.** Tiddler `mandarin-lessons` remains optional. The validator enforces this research/presentation boundary.
 
-`mandarin-source-ids` is a whitespace-separated list of known IDs from the source registry. `curriculum-editorial` identifies an independently written **editorial text provenance**, not a claim that source frequency, syllable tones, or senses have been externally verified. Credit human-produced audio and quoted source materials separately under their applicable license.
+For a new word lacking a reserved ID, `python3 scripts/register_lexeme.py tiddlers/Vocabulary/<file>.tid --batch <batch>` may allocate one. **Preferred after surveying:** use `--lexeme-id lx-NNNNNN` to publish an existing planned item without allocating another ID. The script confirms its Hanzi and Pinyin agree with the accepted selection roster, inserts the ID into the tiddler and updates the lifecycle registry. `--dry-run` previews without writing.
 
-## Source registry and reuse decisions
+## Division of labor and scale gates
 
-`research/lexical-sources.json` contains versioned sources with stable `id`, `kind`, `source_url`, `license`, `reuse_status`, `release`, `sha256` and `accessed` fields. Public research records may cite sources without copying their data.
+1. Build an intentionally broad, copyright-compliant research candidate pool; do not publish it as vocabulary tiddlers.
+2. Review segmentation, identity, sources, bands and domain coverage; prune and freeze a selected roster using planned IDs.
+3. Only after the selection stabilizes, generate learner-facing tiddlers in small reviewed batches; create grammatical lessons independently.
+4. Work creates a **draft PR** for research or production, never self-merges a vocabulary import. The designated assistant reviews language, rights and validation; only then marks ready/merges. GitHub Actions automatically builds/deploys merged content.
+5. Before producing thousands of wiki pages, benchmark 8–9k tiddlers for static build size, search performance and mobile usability. Preserve the offline/static TiddlyWiki design if practical.
 
-Allowed `reuse_status` values:
-
-- `editorial-original`: content authored for this project; no outside frequency/HSK authority implied.
-- `reference-only`: consulted for checking facts, with no copied entries/tables.
-- `research-reference-only`: accessible for analysis, but public data reuse unconfirmed.
-- `not-yet-approved`: rights/release verification outstanding.
-- `redistribution-approved`: public data reuse explicitly assessed; exact release and 64-character SHA-256 are required.
-
-Before marking any third-party source `redistribution-approved`, retain the exact downloaded release, acquisition date, checksum, license, upstream NOTICE, transformation code, and required attribution. A license on a **paper**, **software**, or **third-party transcription** does not automatically license an upstream table or fiction corpus. If permission is unclear, do not reproduce source-derived rank/HSK data in this public repository.
-
-The initial manifest deliberately lists **wordfreq zh, SUBTLEX-CH, November 2025 HSK, and CC-CEDICT as reference/pending sources, not frozen approved datasets**. No frequencies or HSK levels have been imported from them. Reusing CC BY-SA data may impose attribution/ShareAlike obligations on the resulting derivative; obtain a compatible licensing decision first.
-
-## Entry-level evidence ledger
-
-`research/lexical-evidence.csv` is an append-and-review ledger, separate from published definitions. Its columns are:
-
-```csv
-evidence_id,lexeme_id,source_id,claim_type,claim_value,review_status,reviewed_by,reviewed_on,notes
-```
-
-Claim types include `form`, `pronunciation`, `sense`, `register`, `frequency`, `hsk`, `availability`, `genre`, and `band`. States: `candidate`, `checked`, `verified`. A `verified` record needs a reviewer and review date; that attests to a recorded editorial review, **not necessarily independent native-speaker adjudication**. Distinguish review methods and sources in notes.
-
-A published `mandarin-lexical-band` now requires `mandarin-band-evidence-id` pointing to a **verified** `band` claim for the same lexeme and matching value. Likewise, `mandarin-frequency-rank` requires `mandarin-frequency-evidence-id` and `mandarin-hsk-level` requires `mandarin-hsk-evidence-id`, each matching a verified claim. Actual public frequency/HSK values require an approved, versioned, hashed source. This is a **technical minimum**; substantive category assignment must also follow [Vocabulary Target Standard](VOCABULARY_TARGET_STANDARD.md):
-
-- Fundamental/high-use: triangulate corpus ranks, register mixture, and lexical identity; record source editions.
-- High-availability: collect real native-availability/usefulness judgments; **low frequency alone is not evidence**.
-- Wuxia-specialist: test that an item is genuinely additional to the general 7k rather than a common word with a genre context.
-- Coverage: test held-out **spoken, written, and genre** corpora independently, with fixed segmentation rules.
-
-The historical pilot CSVs contain **tentative candidate bands**, not `mandarin-lexical-band` field values. Leave that metadata absent until the evidence standard is met.
-
-## Workflow and review roles
-
-1. Work imports a small batch on a branch and opens a **draft PR**. **Work must not mark its own vocabulary PR ready or merge it**, even when technical checks pass, unless the user explicitly changes this instruction.
-2. Work updates `.tid` records and the ID registry together; creates research evidence/source rows only when actually justified; never fabricates ranks, levels, citations or native review.
-3. The GitHub PR workflow runs metadata/DAG validation, lexical registry/evidence validation, non-reuse checks against `main`, unit tests and the TiddlyWiki build with a read-only token.
-4. The designated reviewer (assistant acting on the user's review request) inspects the linguistic claims, source provenance, rights and examples; corrects issues and reruns checks. **Only that reviewer** marks the draft ready and merges if satisfactory.
-5. The existing `main` workflow automatically builds and deploys after merge. GitHub deletes merged branches when the repository setting is enabled; branch protection is not required for this agreement.
-
-## Scale gates
-
-This infrastructure is **not** a mass-import authorization. Before expanding from tens to thousands of records, settle the source versions/reuse rights and actual frequency lookup pipeline, adjudicate homographs and sense identity, create a documented sampling protocol for native review, and benchmark 8k–9k tiddlers for static build size and browser-side search. Accept technical validations as necessary, not sufficient.
-
-The next test batch should concentrate on **heteronyms, polysemy, separable verbs, particles, and real wuxia/xianxia usage**, explicitly documenting disambiguation and register rather than repeating simple concrete nouns.
+A passing validator enforces referential integrity and stated source permissions. It does **not** establish lexical accuracy, naturalness, corpus rankings or held-out coverage.

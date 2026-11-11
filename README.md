@@ -30,7 +30,7 @@ See [Target Vocabulary Standard](docs/VOCABULARY_TARGET_STANDARD.md) and [Candid
 - `tiddlers/Exercises`: written assessments and answer keys.
 - `tiddlers/System`: wiki title, default tab, helper templates.
 
-All *course* records use `mandarin-kind` and `mandarin-level`. Vocabulary requires a stable `mandarin-lexeme-id`, source provenance IDs, `mandarin-hanzi`, `mandarin-pinyin`, `mandarin-gloss`, and `mandarin-pos`. Every existing entry has been backfilled with a unique opaque ID; IDs are allocated by the [Lexical Data Contract](docs/LEXICAL_DATA_CONTRACT.md), not by spelling, POS or lesson. Grammar and lessons can specify `mandarin-prerequisites` as a TiddlyWiki title list, e.g. `[[Grammar/SVO Word Order]] [[Grammar/Predicate Negation]]`. Field names use the `mandarin-` prefix to avoid conflicts with TiddlyWiki internals.
+All *course* records use `mandarin-kind` and `mandarin-level`. Published vocabulary requires a stable `mandarin-lexeme-id`, `mandarin-hanzi`, `mandarin-pinyin`, `mandarin-gloss`, and `mandarin-pos`; the candidate survey and provenance/frequency/HSK evidence are maintained in the **separate research layer**, not in vocabulary tiddlers. Every existing entry has been backfilled with a unique opaque ID; IDs are allocated by the [Lexical Data Contract](docs/LEXICAL_DATA_CONTRACT.md), not by spelling, POS or lesson. Grammar and lessons can specify `mandarin-prerequisites` as a TiddlyWiki title list, e.g. `[[Grammar/SVO Word Order]] [[Grammar/Predicate Negation]]`. Field names use the `mandarin-` prefix to avoid conflicts with TiddlyWiki internals.
 
 Use real grammatical descriptions, give pinyin on all new Chinese example sentences, and avoid presenting character-component mnemonics as guaranteed etymologies.
 
@@ -47,4 +47,4 @@ The wiki holds shared course material. **Do not commit sensitive personal speech
 
 See [[Wiki Guide]] in the published site for the browsing workflow and links among content types.
 
-Future bulk population: follow [Work vocabulary handoff](docs/WORK_POPULATION_GUIDE.md) and [Lexical Data Contract](docs/LEXICAL_DATA_CONTRACT.md). New entries must update the stable-ID registry and use license-safe, versioned research evidence. Work leaves vocabulary imports as draft PRs for independent editorial review before merging; no mass ingest is authorized yet.
+Vocabulary research is now **survey first, prune and freeze the selected lexicon, then publish entries**. See [Survey-first Lexicon Standard](docs/LEXICON_SURVEY_STANDARD.md), [Lexical Data Contract](docs/LEXICAL_DATA_CONTRACT.md), and [Work handoff](docs/WORK_POPULATION_GUIDE.md). Research-selected words can hold planned IDs without any wiki pages. Work leaves import PRs in draft for independent editorial review; no mass production is authorized yet.

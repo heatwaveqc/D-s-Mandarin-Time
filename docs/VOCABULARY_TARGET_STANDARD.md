@@ -1,6 +1,6 @@
 # Mandarin Target Vocabulary Standard — v1.0
 
-Status: **approved curriculum target; candidate lexical data not yet ingested or coverage-validated**  
+Status: **approved numeric goal; the full selection survey and held-out coverage evaluation are still pending**  
 Adopted: 2026-11-11  
 Owner: D's Mandarin Time  
 Companion: [Source Survey](VOCABULARY_SOURCE_SURVEY.md), [Work population guide](WORK_POPULATION_GUIDE.md).
@@ -69,27 +69,23 @@ Keep characters (graph records), words (lexical records), senses (optional futur
 
 Additional comparisons are documented in [Vocabulary Source Survey](VOCABULARY_SOURCE_SURVEY.md).
 
-## Data model / future ingestion
+## Data model — survey, selection, and publication
 
-All 76 vocabulary tiddlers present at the 2026-11-11 infrastructure migration have immutable `mandarin-lexeme-id` values (`lx-000001` through `lx-000076`) and source-provenance IDs, in addition to `mandarin-hanzi`, `mandarin-pinyin`, `mandarin-gloss`, and `mandarin-pos`; some also have `mandarin-lessons`. The `mandarin-lessons` field is **optional** for a master-lexicon entry and should be added only when the word is intentionally linked to a lesson. Vocabulary selection/ingestion and curricular lesson creation are independent workstreams.
+The **[Survey-first Lexicon Standard](LEXICON_SURVEY_STANDARD.md)** governs the selection workstream. First build an overcomplete research candidate survey, then deduplicate lexical identities, adjudicate high-impact ambiguities and prune to a reviewed accepted roster. Do not infer wordhood or category membership from mere character strings or force an arbitrary quota despite contradictory evidence.
 
-Optional curated metadata for new records:
-- `mandarin-lexical-band`: `fundamental` | `high-use` | `high-availability` | `wuxia-specialist`. Leave blank for provisional pilot vocabulary awaiting ranking.
-- `mandarin-registers`: list such as `spoken written fiction literary`.
-- `mandarin-topics`: list such as `wuxia weapons` (overlap does not create duplicate records).
-- `mandarin-frequency-source`, `mandarin-frequency-rank`: source/version-specific, not fabricated global “true frequency.”
-- `mandarin-hsk-edition`, `mandarin-hsk-level`: optional crosswalk.
-- `mandarin-source-notes`, `mandarin-review-status`: provenance and review status, e.g. `unreviewed`, `checked`, `verified`.
+The [Lexical Data Contract](LEXICAL_DATA_CONTRACT.md) reserves immutable IDs for selected items, whether `planned` (no wiki tiddler) or `active` (published). The 76 initial wiki records have permanent `lx-000001`–`lx-000076` IDs but must still be cross-checked against the final selected inventory.
 
-Follow [Lexical Data Contract](LEXICAL_DATA_CONTRACT.md) to allocate IDs and record source/evidence provenance. Publishing a lexical band or source-derived rank/HSK claim now requires corresponding verified evidence metadata; editable candidate strata are not final claims. Choose a source and freeze a version; calculate source-specific ranks and compare before assigning the bands at scale. **Do not classify the existing 31-word pilot as a validated frequency sample.**
+**Research-layer-only data** includes provisional or final lexical bands, source frequency/rank/Zipf, HSK mapping, availability/genre judgments, bibliographic provenance, permissions, and adjudication status. Those facts are for choosing words and validating the library, not required in the vocabulary entry itself. In the public TiddlyWiki, retain `mandarin-lexeme-id`, Hanzi, Pinyin, gloss, POS, useful senses/collocations/register notes, original examples and optional lesson membership.
 
-Each lesson has a bounded vocabulary page, ideally 15–30 newly introduced words; known words can be linked for review. No single 7k listing in the browser. Do not publish raw copyrighted corpora, licensed dictionaries, personal scores, or learner speech data to this public repo.
+Do not redistribute third-party source tables without appropriate permission. Private data sources are not automatically authorized for republication merely because they inform editorial selection. Publishing a word's original-language lexical entry is a separate activity from redistributing a frequency database. Maintain any required acknowledgments for genuine derived text/data.
+
+The selected library precedes **tiddler generation**, which itself precedes **lesson organization**. Lesson vocabulary indexes stay bounded; do not render all 8–9k terms at once. Before mass publication, benchmark the static build and browser-side search.
 
 ## Selection decisions / open work
 
 1. Choose and record primary sources with clear reuse permissions; see the survey for a recommended order.
 2. Normalize forms and syllable readings; adjudicate segmentation and duplicated lexemes.
-3. Build a small pilot ranked pool (~100–200 candidates), with documented explicit exclusions.
+3. Use the existing 200-entry candidate pilot as a seed; assemble an intentionally broad, permission-aware research survey and record exclusions/duplicates before pruning.
 4. Curate high-availability topics and wuxia overlaps separately.
 5. Measure independent held-out **spoken, written, wuxia** lexical token coverage.
 6. Partition accepted words into lessons using *grammar prerequisites* and contextualized readings, not alphabetical or raw frequency order.
