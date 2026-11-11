@@ -30,6 +30,10 @@ Twenty-five new entries were prepared as independent vocabulary tiddlers, each w
 
 After editorial audit, **all 25 imported records have their `mandarin-lexical-band` field omitted** until their corpus and availability evidence is reviewed. Each carries `mandarin-review-status: editorial-reviewed; band-unverified`. The source candidate pool retains its clearly marked *provisional* band proposals. An entry's lack of lesson assignment does not make it incomplete.
 
+## Second test batch
+
+A second 20-entry batch has been added in a separate pull request for review. Its records are editorially reviewed, unassigned to lessons, and marked `band-unverified`; the batch ledger retains provisional candidate strata without asserting frequency or HSK status. Across both pilot batches, the working repository contains **45 imported entries**, **45 unassigned**, **0 lesson-assigned**, and **0 with a verified lexical-band field**. No coverage claim is made.
+
 ## Review ledger
 
 - **Unresolved:** all 200 candidates need multi-source frequency lookup, official HSK crosswalk, and native-level sense/register review before band membership is finalized.
