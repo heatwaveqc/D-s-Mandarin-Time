@@ -1,6 +1,6 @@
-# Work handoff — Vocabulary ingestion (v1.1)
+# Work handoff — Vocabulary ingestion (v1.2)
 
-Use this contract when populating the Mandarin course through ChatGPT Work or an equivalent batch process.
+Use this contract when populating the Mandarin course through ChatGPT Work or an equivalent batch process. **Read [LEXICAL_DATA_CONTRACT.md](LEXICAL_DATA_CONTRACT.md) first**; it defines required immutable IDs, source/evidence registries, and two-pass review. Do not merge an import PR within the same Work session.
 
 ## Scope and source of truth
 
@@ -18,11 +18,15 @@ type: text/vnd.tiddlywiki
 tags: [[Mandarin Vocabulary]]
 mandarin-kind: vocabulary
 mandarin-level: beginner
+mandarin-lexeme-id: lx-000020
+mandarin-source-ids: curriculum-editorial
 mandarin-hanzi: 师父
 mandarin-pinyin: shīfu
 mandarin-gloss: master; respected mentor
 mandarin-pos: noun
 ```
+
+The displayed ID `lx-000020` belongs to the **existing** 师父 tiddler; never copy it into a new record. For new imports, allocate the next never-used ID from `research/lexeme-id-registry.csv` and add a matching registry row in the same PR. `mandarin-source-ids` must reference one or more entries in `research/lexical-sources.json`; `curriculum-editorial` signals original editorial writing, **not** externally validated linguistic correctness.
 
 Optional metadata includes `mandarin-lessons: L03` (only after assigning a lesson), `mandarin-lexical-band`, `mandarin-registers`, and `mandarin-topics`. For unsequenced reference entries, `mandarin-level: reference` is acceptable; this field does not imply lesson membership. The optional fields should be added as actual `.tid` header fields, not as comment lines.
 
@@ -47,13 +51,13 @@ Suggested initial lesson size: 15–30 *new* items, fewer in foundational lesson
 1. Start with an adjudicated, appropriately reusable source/version and a pilot of 20–50 words; explicitly flag ambiguous or suspicious entries. Do not bulk copy proprietary dictionaries, news corpora, or copyrighted fiction into this public repo.
 2. Build and adjudicate the **independent lexical inventory** first. Track duplicate forms, segmentation, source provenance, uncertainty, and optional lexical bands. Do not create artificial lessons to make new words pass validation.
 3. Populate **one word per tiddler**. For the small subset chosen for instruction, group by grammatical dependencies, character/sound families, frequency, usefulness, and recurring wuxia settings—not alphabetic Pinyin order. Create each lesson index before assigning its ID to any word; leave all other words unassigned.
-4. Commit small, reviewable batches (e.g. <=100 entries per commit).
-5. Run `python3 scripts/validate_wiki.py` and confirm GitHub Actions build/deploy. Repair duplicates, missing references, and broken lesson IDs before the next batch.
-6. Report real counts, **assigned versus unassigned** entries, source/version, tentative lexical bands, overlap with wuxia, newly introduced lesson IDs, and any uncertainties. Do not claim that all words have been reviewed solely because CI passes.
+4. Allocate **one immutable lexeme ID per new lexical entry**; update `research/lexeme-id-registry.csv` atomically with tiddlers. Add evidence to `research/lexical-evidence.csv` only if independently documented. Candidate CSV IDs based on form/POS are research keys and must not be promoted as stable lexeme IDs. Commit small, reviewable batches (e.g. <=100 entries per commit).
+5. Run `python3 scripts/validate_wiki.py`, the unit tests and the PR GitHub Actions check, including lexeme-history validation. Repair duplicates, missing references, invalid source references and broken lesson IDs before the next batch. Do not change previously allocated IDs on lexical reanalysis.
+6. Report real counts, **assigned versus unassigned** entries, source/version and licensing status, tentative lexical bands, overlap with wuxia, newly introduced lesson IDs, lexical-ID range, evidence references, and any uncertainties. Do not claim that all words have been reviewed solely because CI passes.
 
 ## Pull-request review and merge policy
 
-The default collaboration policy is **reviewable pull requests, automatic validation, editorial merge decisions**. An authorized assistant or Work agent may merge its own content PR after checking that:
+The default collaboration policy is **draft import PRs, automatic validation, independent editorial merge decisions**. **A Work import session must leave its vocabulary PR in draft and must not self-merge.** The designated reviewing assistant may mark it ready and merge after checking that:
 
 1. PR validation has completed successfully on the current head commit, including the metadata validator, regression tests, TiddlyWiki build, and output checks.
 2. New lexical entries have been reviewed for Hanzi/traditional forms, tone-marked Pinyin and neutral tones, segmentation and lexical identity, POS, glosses, register, and natural original example sentences. An automated pass alone is insufficient.
@@ -61,7 +65,7 @@ The default collaboration policy is **reviewable pull requests, automatic valida
 4. No unresolved systemic blocker or likely substantive linguistic error remains. Unverified but explicitly labeled research candidates may be committed as research candidates, not as final classified vocabulary.
 5. The branch is up to date enough to merge safely, and the latest CI results apply to the mergeable changes.
 
-A draft PR remains a draft while these checks are unresolved; mark it ready and merge when they are satisfied. The existing `main` push workflow builds/deploys the static site after merge. Automatic deletion of merged branches is a **repository setting**, not a workflow guarantee; do not require an additional branch-protection ruleset for the collaboration process. Agents should never bypass a failed check simply because GitHub does not enforce it.
+Work leaves the PR in draft even if its technical checks pass. The independent reviewing assistant marks it ready and merges when the checks and linguistic review are satisfied. The existing `main` push workflow builds/deploys the static site after merge. Automatic deletion of merged branches is a **repository setting**, not a workflow guarantee; do not require an additional branch-protection ruleset for the collaboration process. Agents should never bypass a failed check simply because GitHub does not enforce it.
 
 ## Audio
 

@@ -71,7 +71,7 @@ Additional comparisons are documented in [Vocabulary Source Survey](VOCABULARY_S
 
 ## Data model / future ingestion
 
-Existing pilot word tiddlers have `mandarin-hanzi`, `mandarin-pinyin`, `mandarin-gloss`, and `mandarin-pos`; some also have `mandarin-lessons`. The `mandarin-lessons` field is **optional** for a master-lexicon entry and should be added only when the word is intentionally linked to a lesson. Vocabulary selection/ingestion and curricular lesson creation are independent workstreams.
+All 76 vocabulary tiddlers present at the 2026-11-11 infrastructure migration have immutable `mandarin-lexeme-id` values (`lx-000001` through `lx-000076`) and source-provenance IDs, in addition to `mandarin-hanzi`, `mandarin-pinyin`, `mandarin-gloss`, and `mandarin-pos`; some also have `mandarin-lessons`. The `mandarin-lessons` field is **optional** for a master-lexicon entry and should be added only when the word is intentionally linked to a lesson. Vocabulary selection/ingestion and curricular lesson creation are independent workstreams.
 
 Optional curated metadata for new records:
 - `mandarin-lexical-band`: `fundamental` | `high-use` | `high-availability` | `wuxia-specialist`. Leave blank for provisional pilot vocabulary awaiting ranking.
@@ -81,7 +81,7 @@ Optional curated metadata for new records:
 - `mandarin-hsk-edition`, `mandarin-hsk-level`: optional crosswalk.
 - `mandarin-source-notes`, `mandarin-review-status`: provenance and review status, e.g. `unreviewed`, `checked`, `verified`.
 
-Choose a source and freeze a version; calculate source-specific ranks and compare before assigning the bands at scale. **Do not classify the existing 31-word pilot as a validated frequency sample.**
+Follow [Lexical Data Contract](LEXICAL_DATA_CONTRACT.md) to allocate IDs and record source/evidence provenance. Publishing a lexical band or source-derived rank/HSK claim now requires corresponding verified evidence metadata; editable candidate strata are not final claims. Choose a source and freeze a version; calculate source-specific ranks and compare before assigning the bands at scale. **Do not classify the existing 31-word pilot as a validated frequency sample.**
 
 Each lesson has a bounded vocabulary page, ideally 15–30 newly introduced words; known words can be linked for review. No single 7k listing in the browser. Do not publish raw copyrighted corpora, licensed dictionaries, personal scores, or learner speech data to this public repo.
 
