@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "last_reviewed": "2026-11-11",
+  "sources": [
+    {
+      "id": "curriculum-editorial",
+      "kind": "editorial",
+      "release": "course-created entries through 2026-11-11",
+      "source_url": "https://github.com/heatwaveqc/D-s-Mandarin-Time",
+      "license": "original course text; external example audio separately credited",
+      "reuse_status": "editorial-original",
+      "sha256": null,
+      "accessed": "2026-11-11",
+      "notes": "Original editorial vocabulary definitions/examples. Being authored in-house does not prove lexical accuracy, source frequency, HSK level, or native-speaker adjudication."
+    },
+    {
+      "id": "wordfreq-zh",
+      "kind": "frequency",
+      "release": null,
+      "source_url": "https://github.com/rspeer/wordfreq",
+      "license": "CC BY-SA 4.0 data with upstream notices; Apache-2.0 code",
+      "reuse_status": "not-yet-approved",
+      "sha256": null,
+      "accessed": "2026-11-11",
+      "notes": "Freeze exact release, package data hash and licensing/NOTICE before importing ranks. Do not treat mixed-register frequency as an HSK or high-availability label."
+    },
+    {
+      "id": "subtlex-ch",
+      "kind": "frequency",
+      "release": "Cai and Brysbaert 2010 reference paper; specific dataset build not frozen",
+      "source_url": "https://www.ugent.be/pp/experimentele-psychologie/en/research/documents/subtlexch",
+      "license": "research accessibility; dataset redistribution rights unconfirmed",
+      "reuse_status": "research-reference-only",
+      "sha256": null,
+      "accessed": "2026-11-11",
+      "notes": "No direct table redistribution approval is asserted; subtitle proxy differs from spontaneous speech."
+    },
+    {
+      "id": "hsk-2025",
+      "kind": "pedagogical",
+      "release": "November 2025 syllabus; entry file not frozen",
+      "source_url": "https://www.chinesetest.cn/HSK?lang=en",
+      "license": "official syllabus; third-party transcription license does not itself authorize redistribution",
+      "reuse_status": "research-reference-only",
+      "sha256": null,
+      "accessed": "2026-11-11",
+      "notes": "No bulk syllabus import or unverified level labels."
+    },
+    {
+      "id": "cc-cedict",
+      "kind": "dictionary",
+      "release": null,
+      "source_url": "https://cc-cedict.org/editor/editor.php?handler=Download",
+      "license": "CC BY-SA 4.0",
+      "reuse_status": "reference-only",
+      "sha256": null,
+      "accessed": "2026-11-11",
+      "notes": "Reference for independent adjudication. For derivative published data, first freeze snapshot/hash and satisfy attribution and ShareAlike requirements."
+    }
+  ]
+}
