@@ -172,5 +172,44 @@ class LexicalInfrastructureTests(unittest.TestCase):
         self.assertEqual(lex.check_history(self.reg, after), [])
 
 
+    def new_unregistered_word(self):
+        original = (self.words / "test.tid").read_text(encoding="utf-8")
+        original = original.replace("title: Vocabulary/测试", "title: Vocabulary/新词")
+        original = original.replace("mandarin-lexeme-id: lx-000001\n", "")
+        original = original.replace("mandarin-source-ids: curriculum-editorial\n", "")
+        (self.words / "new.tid").write_text(original, encoding="utf-8")
+
+    def test_register_lexeme_allocates_and_preserves_existing(self):
+        import register_lexeme
+        self.new_unregistered_word()
+        new_id = register_lexeme.register(self.root, "tiddlers/Vocabulary/new.tid", "batch-03")
+        self.assertEqual(new_id, "lx-000002")
+        self.assertIn("mandarin-lexeme-id: lx-000002",
+                      (self.words / "new.tid").read_text(encoding="utf-8"))
+        self.assertEqual(self.issues(), [])
+        self.assertTrue(any(r["lexeme_id"] == "lx-000002"
+                            and r["assigned_batch"] == "batch-03"
+                            for r in self._read_registry()))
+
+    def _read_registry(self):
+        with (self.research / "lexeme-id-registry.csv").open(encoding="utf-8", newline="") as f:
+            return list(csv.DictReader(f))
+
+    def test_register_lexeme_rejects_duplicate(self):
+        import register_lexeme
+        with self.assertRaises(ValueError):
+            register_lexeme.register(self.root, "tiddlers/Vocabulary/test.tid", "batch-03")
+
+    def test_register_lexeme_dry_run(self):
+        import register_lexeme
+        self.new_unregistered_word()
+        result = register_lexeme.register(self.root, "tiddlers/Vocabulary/new.tid",
+                                          "batch-03", dry_run=True)
+        self.assertEqual(result, "lx-000002")
+        self.assertEqual(len(self._read_registry()), 1)
+        self.assertNotIn("mandarin-lexeme-id:",
+                         (self.words / "new.tid").read_text(encoding="utf-8"))
+
+
 if __name__ == "__main__":
     unittest.main()
