@@ -40,3 +40,5 @@ The wiki holds shared course material. **Do not commit sensitive personal speech
 4. Commit to `main`; deployment runs automatically when Pages is enabled.
 
 See [[Wiki Guide]] in the published site for the browsing workflow and links among content types.
+
+Future bulk population: follow [Work vocabulary handoff](docs/WORK_POPULATION_GUIDE.md) to group words in bounded lesson indexes and avoid rendering an entire 7k lexicon at once.

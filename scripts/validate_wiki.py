@@ -106,6 +106,13 @@ def validate(root: Path = TIDDLERS) -> tuple[list[str], dict[str, int]]:
     for title, (fields, body, path) in found.items():
         if title.startswith("$:/"):
             continue
+        if fields.get("mandarin-kind") == "vocabulary":
+            lesson_ids = title_list(fields.get("mandarin-lessons", ""))
+            if not lesson_ids:
+                errors.append(f"{title}: missing mandarin-lessons membership")
+            for lesson_id in lesson_ids:
+                if f"Lesson Vocabulary/{lesson_id}" not in found:
+                    errors.append(f"{title}: unknown vocabulary lesson {lesson_id!r}")
         dependencies = title_list(fields.get("mandarin-prerequisites", ""))
         edges[title] = dependencies
         for dep in dependencies:

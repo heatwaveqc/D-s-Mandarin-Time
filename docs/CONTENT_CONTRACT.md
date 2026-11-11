@@ -57,3 +57,5 @@ This is currently a **conceptual progression**, not an automatic per-learner gat
 ## Publishing
 
 `python3 scripts/validate_wiki.py` validates metadata. `tiddlywiki . --build index` builds `public/index.html`, using TiddlyWiki 5.4.1. GitHub Actions always validates, builds, and uploads a portable HTML artifact. If Pages is enabled it also uploads the Pages artifact and deploys. Set Pages to **GitHub Actions** under repository settings, then re-run or dispatch the workflow. No persistent Node service is needed.
+
+For large vocabulary imports and scope-limited progress reporting, see `docs/WORK_POPULATION_GUIDE.md`.
