@@ -1,76 +1,67 @@
-# Work handoff — Vocabulary ingestion (v1.2)
+# Work handoff — Mandarin lexical selection and production (v1.3)
 
-Use this contract when populating the Mandarin course through ChatGPT Work or an equivalent batch process. **Read [LEXICAL_DATA_CONTRACT.md](LEXICAL_DATA_CONTRACT.md) first**; it defines required immutable IDs, source/evidence registries, and two-pass review. Do not merge an import PR within the same Work session.
+Use this contract for ChatGPT Work and equivalent import tasks. **Read [Survey-first Lexicon Standard](LEXICON_SURVEY_STANDARD.md), [Lexical Data Contract](LEXICAL_DATA_CONTRACT.md) and [Vocabulary Target Standard](VOCABULARY_TARGET_STANDARD.md)** before editing the public repository.
 
-## Scope and source of truth
+## Two separate goals
 
-The course is a standalone, public **static TiddlyWiki**, not a Node server. **One lexical entry = one vocabulary tiddler**. The master lexicon is independent of lessons: an entry may exist permanently without lesson membership, and importing words must not force creation of placeholder lessons. Never create one monolithic 7,000-word tiddler or an unbounded page that renders all word records. The approved target is **7,000 general Mandarin lexical entries (2k fundamental + 3k high-use + 2k high-availability) plus 1–2k additional unique wuxia/xianxia lexical entries**. Desired 95–98% token coverage must be measured independently for spoken, general written, and genre corpora; the target does not guarantee that percentage. See [VOCABULARY_TARGET_STANDARD.md](VOCABULARY_TARGET_STANDARD.md) and [VOCABULARY_SOURCE_SURVEY.md](VOCABULARY_SOURCE_SURVEY.md).
+1. **Choose the library.** Survey deliberately more words than needed; normalize, deduplicate, adjudicate segmentation/Pinyin/senses/register, evaluate evidence and prune to an approved inventory. The target remains 2,000 fundamental + 3,000 high-use + 2,000 high-availability general words plus **1,000–2,000 genuinely additional** wuxia/xianxia words. The current 76 published entries are not proof of final selection. Do not create additional wiki vocabulary pages during survey-only assignments.
+2. **Build and teach the library.** After the selection is frozen, produce lexical `.tid` entries in validated batches. Later, assign pedagogically meaningful lesson memberships based on grammar dependencies and contextual material. The selected list, constructed wiki library and course sequencing must remain independent.
 
-Before bulk ingestion, perform a small source and rights audit. Prefer **wordfreq zh** as mixed-register candidate frequency backbone, **SUBTLEX-CH** as spoken/subtitle reference, and the **November 2025 HSK syllabus** as pedagogical crosswalk (not frequency order). The 2k high-availability tier and 1–2k wuxia-specific layer require additional curated evaluation; raw frequency alone cannot select these. Select a source vocabulary list, its version, and reuse terms (e.g. an appropriately licensed frequency/HSK list). Record bibliographic provenance. Do not assume that a third-party website's 7k list is the official exam list.
+A general vocabulary item also useful in wuxia counts once toward general vocabulary. The 95–98% token-coverage objective must be **measured independently** in spontaneous/dialogue Mandarin, general writing and actual genre fiction; raw list size does not establish coverage.
 
-## Content format
+## Survey phase (the next Work assignment)
 
-Each record is a UTF-8 `tiddlers/Vocabulary/<safe-slug>.tid` file. Required fields:
+Start with the existing 200-row candidate research pool and the source survey. Aim provisionally for **~14k–18k general candidate units plus ~3k–5k genre candidates**, before overlap reconciliation and pruning; the size is a research planning parameter, not a frequency threshold. Use manageable research batches and preserve auditability.
 
-```
+- Record original candidate keys (not permanent `lx-` IDs), simplified/traditional forms, tone-marked Pinyin, grammatical class, original succinct gloss, register/genre tags, proposed identity boundaries and review state.
+- Keep evidence about frequency, HSK, native high-availability judgments, subgenre occurrence, source licensing and methods **in research files**, linked through candidate keys or eventually stable IDs. Keep unlicensed/restricted source tables in appropriately private storage and publish only legally reusable data/editorial findings.
+- Explicitly log duplicates, polysemy/heteronyms, variable readings, separable verbs, compounds, proper names, classical expressions, Taiwan/Mainland distinctions and genre overlap. Mark uncertainty honestly; do not silently invent ranks, dictionary senses or native review.
+- Record selection outcomes as `selected`, `needs-review`, `deferred` or `rejected` with reasons; **do not force an exact band quota at the cost of lexical quality**.
+- Freeze and version the accepted list, with a license and pronunciation review ledger and evaluation plan for **held-out** spoken/written/genre token coverage. The research survey may require multiple Work tasks. Do not write thousands of `.tid` records during this phase.
+
+When selecting words as a stable inventory (not yet publishing), reserve immutable `lx-NNNNNN` IDs in `research/lexeme-id-registry.csv` with status `planned` and empty path; create matching `research/lexical-selection.csv` rows. A planned ID is a real accepted lexical identity but does **not** require any lesson or TiddlyWiki file. IDs must be sequential, unique and never reused.
+
+## Publication phase (only after survey selection review)
+
+For each finished lexical entry, produce one UTF-8 `tiddlers/Vocabulary/<safe-slug>.tid` file. A minimal source file looks like:
+
+```text
 title: Vocabulary/师父
 type: text/vnd.tiddlywiki
 tags: [[Mandarin Vocabulary]]
 mandarin-kind: vocabulary
 mandarin-level: beginner
 mandarin-lexeme-id: lx-000020
-mandarin-source-ids: curriculum-editorial
 mandarin-hanzi: 师父
 mandarin-pinyin: shīfu
 mandarin-gloss: master; respected mentor
 mandarin-pos: noun
 ```
 
-The displayed ID `lx-000020` belongs to the **existing** 师父 tiddler; never copy it into a new record. For new imports, allocate the next never-used ID from `research/lexeme-id-registry.csv` and add a matching registry row in the same PR. `mandarin-source-ids` must reference one or more entries in `research/lexical-sources.json`; `curriculum-editorial` signals original editorial writing, **not** externally validated linguistic correctness.
+`lx-000020` is **already assigned** to 师父; never copy it into a new record. To activate an approved planned word, write its tiddler *without* the ID header then run:
 
-Optional metadata includes `mandarin-lessons: L03` (only after assigning a lesson), `mandarin-lexical-band`, `mandarin-registers`, and `mandarin-topics`. For unsequenced reference entries, `mandarin-level: reference` is acceptable; this field does not imply lesson membership. The optional fields should be added as actual `.tid` header fields, not as comment lines.
-
-After one blank line, include a short definition, at least one example with **Hanzi, tone-marked Pinyin and English**, and links to grammatical or character notes. Never invent a word's pronunciation from its component characters. For heteronyms, alternate readings, proper names, tone sandhi and polysemy, explicitly document when/why a reading is used. Where practical track traditional form and regional usage as optional metadata.
-
-A word can belong to multiple lessons: `mandarin-lessons: L03 L07`. For words not yet assigned to lessons, **omit** `mandarin-lessons` entirely. If any lesson IDs are specified, all must resolve to existing `Lesson Vocabulary/LNN` indexes.
-
-## Lesson partition
-
-Only create/verify `Lesson Vocabulary/LNN` when a pedagogical lesson actually uses a group of words. Before assigning `mandarin-lessons: LNN`, create its corresponding index. New lesson pages should use the pilot's dynamic filter for bounded lists:
-
-```
-[tag[Mandarin Vocabulary]contains:mandarin-lessons[L03]sort[mandarin-pinyin]]
+```bash
+python3 scripts/register_lexeme.py tiddlers/Vocabulary/<file>.tid --batch publish-01 --lexeme-id lx-NNNNNN
 ```
 
-The `Vocabulary Index` may link to lesson indexes and explain how to find any lexical entry using search; it must never render thousands of words simultaneously. Unassigned words remain searchable and count toward the lexicon inventory, but do not appear in lesson filters. Keep separate curricular sequencing (`Lesson/...`) from the independent master lexicon (`Vocabulary/...`).
+This promotes the planned entry to active while retaining its ID and checking Hanzi/Pinyin against the selection roster. For exceptional newly accepted words not in the roster, the tool can allocate the next new ID without `--lexeme-id` once their identity is adjudicated.
 
-Suggested initial lesson size: 15–30 *new* items, fewer in foundational lessons; larger groups may be appropriate later. Use review links in subsequent units without duplicating lexemes. If more than ~50 new entries are required, split into smaller units.
+Include clear Hanzi–Pinyin–English contextual sentences, useful collocations and learner-facing linguistic distinctions. Only include traditional form, register, audio attribution and lesson membership where relevant to learning; **do not put selection bands, frequency ranks, HSK crosswalks, provenance source IDs, evidence IDs or internal research review status into the vocabulary tiddler**. Keep copyright-required attribution available where licenses demand it.
 
-## Batch workflow
+`mandarin-lessons` is optional. If set (e.g. `L03 L07`), its lesson vocabulary indexes must already exist. Don't invent lessons to satisfy the vocabulary validator. Prefer 15–30 newly introduced items per lesson when appropriate, though grammar dictates actual scope. The vocabulary index must not render the entire ~8k–9k lexicon on one page.
 
-1. Start with an adjudicated, appropriately reusable source/version and a pilot of 20–50 words; explicitly flag ambiguous or suspicious entries. Do not bulk copy proprietary dictionaries, news corpora, or copyrighted fiction into this public repo.
-2. Build and adjudicate the **independent lexical inventory** first. Track duplicate forms, segmentation, source provenance, uncertainty, and optional lexical bands. Do not create artificial lessons to make new words pass validation.
-3. Populate **one word per tiddler**. For the small subset chosen for instruction, group by grammatical dependencies, character/sound families, frequency, usefulness, and recurring wuxia settings—not alphabetic Pinyin order. Create each lesson index before assigning its ID to any word; leave all other words unassigned.
-4. Allocate **one immutable lexeme ID per new lexical entry**; update `research/lexeme-id-registry.csv` atomically with tiddlers. Add evidence to `research/lexical-evidence.csv` only if independently documented. Candidate CSV IDs based on form/POS are research keys and must not be promoted as stable lexeme IDs. Commit small, reviewable batches (e.g. <=100 entries per commit).
-5. Run `python3 scripts/validate_wiki.py`, the unit tests and the PR GitHub Actions check, including lexeme-history validation. Repair duplicates, missing references, invalid source references and broken lesson IDs before the next batch. Do not change previously allocated IDs on lexical reanalysis.
-6. Report real counts, **assigned versus unassigned** entries, source/version and licensing status, tentative lexical bands, overlap with wuxia, newly introduced lesson IDs, lexical-ID range, evidence references, and any uncertainties. Do not claim that all words have been reviewed solely because CI passes.
+## Checks and review/merge policy
 
-## Pull-request review and merge policy
+- Run `python3 scripts/validate_wiki.py`, `python3 -m unittest discover -s scripts -p 'test_*.py' -v`, the PR lexical history check, and the pinned TiddlyWiki static build.
+- The validator checks unique IDs and lifecycle registry, planned-selection rows, evidence/source permissions, optional lesson memberships and links. Tests do **not** establish native linguistic correctness.
+- **Work must open a draft PR and never self-merge** survey or vocabulary production PRs. A separate reviewing assistant verifies source rights, sample quality, identity choices and CI on the latest head, corrects defects and makes the editorial merge decision.
+- The `main` workflow automatically validates, builds and deploys after merge; GitHub automatically deletes merged branches if that repository setting is enabled. No ruleset is required by the collaboration policy.
+- Report candidate and accepted counts, ID ranges, selected/deferred/rejected statuses, domain breakdowns, duplicate/overlap cases, review uncertainties, source versions/rights and held-out coverage **only when actually measured**.
 
-The default collaboration policy is **draft import PRs, automatic validation, independent editorial merge decisions**. **A Work import session must leave its vocabulary PR in draft and must not self-merge.** The designated reviewing assistant may mark it ready and merge after checking that:
+## Audio, privacy and scale
 
-1. PR validation has completed successfully on the current head commit, including the metadata validator, regression tests, TiddlyWiki build, and output checks.
-2. New lexical entries have been reviewed for Hanzi/traditional forms, tone-marked Pinyin and neutral tones, segmentation and lexical identity, POS, glosses, register, and natural original example sentences. An automated pass alone is insufficient.
-3. Source provenance and redistribution rights are documented; ranks, corpus coverage, HSK crosswalks, and band placement are not portrayed as verified unless their supporting evidence exists.
-4. No unresolved systemic blocker or likely substantive linguistic error remains. Unverified but explicitly labeled research candidates may be committed as research candidates, not as final classified vocabulary.
-5. The branch is up to date enough to merge safely, and the latest CI results apply to the mergeable changes.
+Audio is optional. Use credited human pronunciation audio or independently checked speech synthesis; do not bulk-generate unreviewed tonal audio. See [Audio Assets](AUDIO_ASSETS.md).
 
-Work leaves the PR in draft even if its technical checks pass. The independent reviewing assistant marks it ready and merges when the checks and linguistic review are satisfied. The existing `main` push workflow builds/deploys the static site after merge. Automatic deletion of merged branches is a **repository setting**, not a workflow guarantee; do not require an additional branch-protection ruleset for the collaboration process. Agents should never bypass a failed check simply because GitHub does not enforce it.
+This is a **public** repository. Private learner scores, recordings and conversations belong in private Drive/Sheets, not the published repo. Source licensing may also require keeping restricted analytical tables in private research storage.
 
-## Audio
-
-Audio is optional and reference-based: `mandarin-audio: audio/<slug>.ogg`, plus `mandarin-audio-status` and `mandarin-audio-license`. Human audio or independently reviewed TTS is preferred. The `你好` pilot is a licensed original Ogg recording. The available local eSpeak Mandarin output was **not** deemed adequate for pronunciation teaching. Do not bulk-generate unverified tone examples.
-
-## Privacy
-
-This repository is public. Only curriculum material belongs here. Put personal scores, conversations, recorded speech, and schedules in a private Google Sheet/Drive location, not under GitHub.
+Before the 8k–9k production run, benchmark full-size static TiddlyWiki rendering, HTML size, search latency and representative mobile browsers. Preserve offline access and avoid a single huge rendered vocabulary index.
