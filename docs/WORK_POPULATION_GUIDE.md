@@ -51,6 +51,18 @@ Suggested initial lesson size: 15–30 *new* items, fewer in foundational lesson
 5. Run `python3 scripts/validate_wiki.py` and confirm GitHub Actions build/deploy. Repair duplicates, missing references, and broken lesson IDs before the next batch.
 6. Report real counts, **assigned versus unassigned** entries, source/version, tentative lexical bands, overlap with wuxia, newly introduced lesson IDs, and any uncertainties. Do not claim that all words have been reviewed solely because CI passes.
 
+## Pull-request review and merge policy
+
+The default collaboration policy is **reviewable pull requests, automatic validation, editorial merge decisions**. An authorized assistant or Work agent may merge its own content PR after checking that:
+
+1. PR validation has completed successfully on the current head commit, including the metadata validator, regression tests, TiddlyWiki build, and output checks.
+2. New lexical entries have been reviewed for Hanzi/traditional forms, tone-marked Pinyin and neutral tones, segmentation and lexical identity, POS, glosses, register, and natural original example sentences. An automated pass alone is insufficient.
+3. Source provenance and redistribution rights are documented; ranks, corpus coverage, HSK crosswalks, and band placement are not portrayed as verified unless their supporting evidence exists.
+4. No unresolved systemic blocker or likely substantive linguistic error remains. Unverified but explicitly labeled research candidates may be committed as research candidates, not as final classified vocabulary.
+5. The branch is up to date enough to merge safely, and the latest CI results apply to the mergeable changes.
+
+A draft PR remains a draft while these checks are unresolved; mark it ready and merge when they are satisfied. The existing `main` push workflow builds/deploys the static site after merge. Automatic deletion of merged branches is a **repository setting**, not a workflow guarantee; do not require an additional branch-protection ruleset for the collaboration process. Agents should never bypass a failed check simply because GitHub does not enforce it.
+
 ## Audio
 
 Audio is optional and reference-based: `mandarin-audio: audio/<slug>.ogg`, plus `mandarin-audio-status` and `mandarin-audio-license`. Human audio or independently reviewed TTS is preferred. The `你好` pilot is a licensed original Ogg recording. The available local eSpeak Mandarin output was **not** deemed adequate for pronunciation teaching. Do not bulk-generate unverified tone examples.
