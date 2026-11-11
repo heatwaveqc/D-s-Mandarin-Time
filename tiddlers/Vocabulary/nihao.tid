@@ -8,7 +8,7 @@ mandarin-pinyin: nǐ hǎo
 mandarin-gloss: hello; greeting
 mandarin-pos: greeting
 mandarin-lessons: L01 L02
-mandarin-audio: audio/nihao.mp3
+mandarin-audio: audio/nihao.ogg
 mandarin-audio-status: human-credited
 mandarin-audio-license: CC-BY-SA-3.0
 
@@ -20,7 +20,7 @@ mandarin-audio-license: CC-BY-SA-3.0
 
 !! Hear it
 
-<div class="mandarin-audio"><audio controls="controls" preload="none" src="audio/nihao.mp3">Audio unavailable.</audio><div class="mandarin-audio-caption">Human-recorded Mandarin, credited in [[Audio Attribution]].</div></div>
+<div class="mandarin-audio"><audio controls="controls" preload="none" src="audio/nihao.ogg">Audio unavailable.</audio><div class="mandarin-audio-caption">Human-recorded Mandarin, credited in [[Audio Attribution]].</div></div>
 
 !! Pronunciation note
 

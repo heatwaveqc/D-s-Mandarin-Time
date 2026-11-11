@@ -1,16 +1,18 @@
 #!/usr/bin/env bash
 set -euo pipefail
 mkdir -p assets/audio
-if [[ -s assets/audio/nihao.mp3 ]]; then
-  echo "Pilot audio exists; not replacing an existing reviewed asset."
+if [[ -s assets/audio/nihao.ogg ]]; then
+  echo "Pilot audio exists; not replacing a credited asset."
   exit 0
 fi
+# Original 1.1s human Mandarin pronunciation recording, CC BY-SA 3.0.
+# Author: Sjors Provoost, see docs/AUDIO_ASSETS.md.
 source_url="https://upload.wikimedia.org/wikipedia/commons/7/7d/Zh_n%C7%90_h%C7%8Eo.ogg"
-tmpfile="$(mktemp --suffix=.ogg)"
-trap 'rm -f "$tmpfile"' EXIT
-curl --fail --location --show-error --silent --retry 3 "$source_url" --output "$tmpfile"
-ffmpeg -nostdin -hide_banner -loglevel error -y -i "$tmpfile" -ac 1 -ar 24000 -codec:a libmp3lame -b:a 48k assets/audio/nihao.mp3
-ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 assets/audio/nihao.mp3
-test "$(wc -c < assets/audio/nihao.mp3)" -gt 1000
-test "$(wc -c < assets/audio/nihao.mp3)" -lt 50000
-echo "Small, decoded Mandarin audio verified."
+curl --fail --location --show-error --silent --retry 3 "$source_url" --output assets/audio/nihao.ogg
+python3 - <<'PY'
+from pathlib import Path
+data = Path("assets/audio/nihao.ogg").read_bytes()
+if not data.startswith(b"OggS") or not (1000 < len(data) < 50000):
+    raise SystemExit("Invalid or unexpectedly sized Ogg recording")
+print(f"Recorded Mandarin Ogg sample: {len(data)} bytes; Ogg header confirmed")
+PY

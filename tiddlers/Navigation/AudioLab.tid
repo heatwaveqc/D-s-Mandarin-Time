@@ -10,7 +10,7 @@ A technical pilot for the workflow ''audio recording → repository → static G
 
 !! 你好 · nǐ hǎo · hello
 
-<div class="mandarin-audio"><audio controls="controls" preload="none" src="audio/nihao.mp3">Your browser does not support this audio player.</audio><div class="mandarin-audio-caption">Human recording; listen for third-tone sandhi. [[Vocabulary/你好]]</div></div>
+<div class="mandarin-audio"><audio controls="controls" preload="none" src="audio/nihao.ogg">Your browser does not support this audio player.</audio><div class="mandarin-audio-caption">Human recording; listen for third-tone sandhi. [[Vocabulary/你好]]</div></div>
 
 This clip is adapted from a licensed Wikimedia Commons recording credited in [[Audio Attribution]]. We deliberately did ''not'' use the available offline synthesizer: its Mandarin dictionary was incomplete, so its output could not be trusted as a tone model.
 

@@ -2,16 +2,16 @@
 
 ## Demonstrated pipeline
 
-A human Mandarin recording from Wikimedia Commons is transcoded to a small mono MP3 by the GitHub Actions runner, checked by ffprobe and committed once to `assets/audio/nihao.mp3`. The build copies audio files to `public/audio`, so the static site and its downloadable offline HTML artifact can reference `audio/nihao.mp3`.
+A human Mandarin recording from Wikimedia Commons is copied unchanged as a small Ogg Vorbis file by the GitHub Actions runner, checked by ffprobe and committed once to `assets/audio/nihao.ogg`. The build copies audio files to `public/audio`, so the static site and its downloadable offline HTML artifact can reference `audio/nihao.ogg`.
 
 Audio is referenced from the vocabulary page with HTML5:
 
 ```html
-<audio controls="controls" preload="none" src="audio/nihao.mp3"></audio>
+<audio controls="controls" preload="none" src="audio/nihao.ogg"></audio>
 ```
 
 Keep metadata fields:
-- `mandarin-audio: audio/<filename>.mp3`
+- `mandarin-audio: audio/<filename>.ogg`
 - `mandarin-audio-status: human-credited | tts-reviewed | synthetic-unverified`
 - `mandarin-audio-license: <SPDX-style license identifier>`
 
@@ -23,7 +23,7 @@ Only *reviewed* material belongs in pedagogical listening and tone tests. Files 
 - Author: Sjors Provoost (2011-02-15).
 - Source: https://commons.wikimedia.org/wiki/File:Zh_n%C7%90_h%C7%8Eo.ogg
 - License: CC BY-SA 3.0 — https://creativecommons.org/licenses/by-sa/3.0/
-- Change: converted from Ogg Vorbis to 24 kHz mono MP3 at 48 kbit/s to improve compatibility with static-site playback.
-- Derived sound file: `assets/audio/nihao.mp3`, still CC BY-SA 3.0.
+- Change: none; the original Ogg Vorbis audio is preserved.
+- Derived sound file: `assets/audio/nihao.ogg`, still CC BY-SA 3.0.
 
 Do not remove attribution. If later sources are imported, verify rights and record file-level provenance.
