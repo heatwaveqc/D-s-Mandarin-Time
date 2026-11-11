@@ -46,11 +46,23 @@ jobs:
             git push origin HEAD:main
           fi
 
+      - name: Import Kung Fu ornamental art (one-time)
+        run: |
+          bash scripts/import_kung_fu_art.sh
+          git add assets/kung-fu
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Copy Kung Fu border assets from GATES [skip ci]"
+            git push origin HEAD:main
+          fi
+
       - name: Build self-contained, read-only Pages edition
         run: |
           tiddlywiki . --build index
-          mkdir -p public/audio
+          mkdir -p public/audio public/assets/kung-fu
           cp assets/audio/*.ogg public/audio/
+          cp assets/kung-fu/*.png public/assets/kung-fu/
 
       - name: Check generated site
         shell: bash
@@ -59,6 +71,7 @@ jobs:
           grep -q "D's Mandarin Time" public/index.html
           grep -q "师父有一本书" public/index.html
           test -s public/audio/nihao.ogg
+          test -s 'public/assets/kung-fu/Kung Fu Corner Top-Left - Seamless.png'
           echo "Built static wiki:"
           ls -lh public/index.html
 

@@ -5,7 +5,8 @@ tags: $:/tags/Stylesheet
 /*
  * Mandarin visual theme, adapted from the Kung Fu Domain in GATES:
  * dark oxblood canvas, warm parchment, cinnabar accents, and KaiTi-like headings.
- * Independent and lightweight: no dependency on GATES' image assets, JS, or plugins.
+ * Local copies of GATES Kung Fu ornamental artwork live in assets/kung-fu/.
+ * No dependency on GATES' runtime, JavaScript, or plugins.
  */
 :root {
   --mandarin-ink: #2f241d;
@@ -34,12 +35,34 @@ html, body, body.tc-body {
   border-radius: 3px;
   box-shadow: 0 8px 28px rgba(0,0,0,.38), inset 0 0 0 5px rgba(166,103,60,.045);
 }
-.tc-tiddler-frame::before {
-  content:"";
-  position:absolute;
-  top:7px;left:8px;right:8px;height:1px;
-  background: linear-gradient(90deg, transparent, rgba(138,69,47,.5) 15%,rgba(138,69,47,.5) 85%,transparent);
-  pointer-events:none;
+/* GATES Kung Fu ornament family, copied as static artwork. */
+@media(min-width:1000px) {
+  .tc-tiddler-frame { padding: 113px 89px 38px; }
+  .tc-tiddler-frame::before {
+    content:"";position:absolute;inset:0;pointer-events:none;z-index:2;
+    background-image:
+      url("assets/kung-fu/Kung%20Fu%20Corner%20Top-Left%20-%20Seamless.png"),
+      url("assets/kung-fu/Kung%20Fu%20Corner%20Top-Right%20-%20Seamless.png"),
+      url("assets/kung-fu/Kung%20Fu%20Border%20Left%20Terminator%20-%20Seamless.png"),
+      url("assets/kung-fu/Kung%20Fu%20Border%20Right%20Terminator%20-%20Seamless.png"),
+      url("assets/kung-fu/Kung%20Fu%20Border%20Left%20-%20Seamless%20Tile.png"),
+      url("assets/kung-fu/Kung%20Fu%20Border%20Right%20-%20Seamless%20Tile.png"),
+      url("assets/kung-fu/Kung%20Fu%20Border%20Top%20(left%20half)%20-%20Seamless%20Tile.png"),
+      url("assets/kung-fu/Kung%20Fu%20Border%20Top%20(right%20half)%20-%20Seamless%20Tile.png");
+    background-position: left top,right top,left bottom,right bottom,left top,right top,left top,right top;
+    background-size: 136px 136px,136px 136px,86px 93px,86px 93px,74px 148px,74px 148px,149px 74px,149px 74px;
+    background-repeat: no-repeat,no-repeat,no-repeat,no-repeat,repeat-y,repeat-y,repeat-x,repeat-x;
+  }
+  .tc-tiddler-frame .tc-tiddler-body,
+  .tc-tiddler-frame .tc-tiddler-title,
+  .tc-tiddler-frame .tc-tiddler-header { position:relative; z-index:3; }
+}
+@media(max-width:999px) {
+  .tc-tiddler-frame {padding:1.25rem;}
+  .tc-tiddler-frame::before {
+    content:"";position:absolute;left:10px;right:10px;top:6px;height:1px;pointer-events:none;
+    background:rgba(138,69,47,.4);
+  }
 }
 .tc-tiddler-frame .tc-tiddler-title,
 .tc-tiddler-frame .tc-title { color: var(--mandarin-red); font-family: var(--mandarin-display); }
