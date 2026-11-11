@@ -17,7 +17,7 @@ This repository is intentionally independent of GATES, while following the same 
 
 - `tiddlers/Navigation`: front page, indexes, course map, study instructions.
 - `tiddlers/Grammar`: independently linked grammatical concepts and prerequisites.
-- `tiddlers/Vocabulary`: word-level entries with hanzi, pinyin, POS, gloss, usage and example.
+- `tiddlers/Vocabulary`: individually stored word-level entries with hanzi, pinyin, POS, gloss, usage, lesson memberships and example.
 - `tiddlers/Characters`: character-level semantic/phonetic decomposition with an etymology-confidence note.
 - `tiddlers/Lessons`: reusable lesson assemblies, learning objectives, dependencies.
 - `tiddlers/Readings`: controlled reading passages with pinyin and gloss.
@@ -27,6 +27,8 @@ This repository is intentionally independent of GATES, while following the same 
 All *course* records use `mandarin-kind` and `mandarin-level`. Vocabulary has `mandarin-hanzi`, `mandarin-pinyin`, `mandarin-gloss`, and `mandarin-pos`. Grammar and lessons can specify `mandarin-prerequisites` as a TiddlyWiki title list, e.g. `[[Grammar/SVO Word Order]] [[Grammar/Predicate Negation]]`. Field names use the `mandarin-` prefix to avoid conflicts with TiddlyWiki internals.
 
 Use real grammatical descriptions, give pinyin on all new Chinese example sentences, and avoid presenting character-component mnemonics as guaranteed etymologies.
+
+Vocabulary is navigated by lesson buckets (`mandarin-lessons: L01 L03`) instead of showing 7,000 entries at once. A short human-recorded, credited Mandarin audio sample is included as an asset-publishing pilot; see `docs/AUDIO_ASSETS.md`.
 
 The wiki holds shared course material. **Do not commit sensitive personal speech recordings, private student data, or individually identifying assessment results to this public repository.** Learner progress can be maintained locally or in an access-controlled Drive sheet.
 

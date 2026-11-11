@@ -28,4 +28,4 @@ Wuxia vocabulary: [[Vocabulary/师父]], [[Vocabulary/弟子]], [[Vocabulary/剑
 <$list filter="[<currentTiddler>get[mandarin-prerequisites]enlist-input[]]" variable="prereq"><div>← <$link to=<<prereq>>><$text text=<<prereq>>/></$link></div></$list>
 
 
-[[Course Map]]
+[[Lesson Vocabulary/L03]] · [[Vocabulary by Lesson]] · [[Course Map]]

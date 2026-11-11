@@ -1,0 +1,21 @@
+title: Lesson Vocabulary/L01
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Navigation]]
+mandarin-kind: navigation
+mandarin-level: beginner
+mandarin-summary: Subject–verb–object clauses, personal reference, study, common verbs, and everyday nouns.
+
+! L01 · First sentences
+
+Subject–verb–object clauses, personal reference, study, common verbs, and everyday nouns.
+
+!! Vocabulary — <$count filter="[tag[Mandarin Vocabulary]contains:mandarin-lessons[L01]]"/> entries
+
+<$list filter="[tag[Mandarin Vocabulary]contains:mandarin-lessons[L01]sort[mandarin-pinyin]]">
+<div class="mandarin-index-row"><span class="mandarin-ref-title"><$link/></span> <span class="mandarin-ref-description">(<$view field="mandarin-pinyin"/>) — <$view field="mandarin-gloss"/></span></div>
+</$list>
+
+!! Lesson
+[[Lesson/01 First Sentences]]
+
+[[Vocabulary by Lesson]] · [[Vocabulary Index]]

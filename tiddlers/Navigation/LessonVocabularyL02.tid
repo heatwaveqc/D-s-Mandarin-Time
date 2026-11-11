@@ -1,0 +1,21 @@
+title: Lesson Vocabulary/L02
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Navigation]]
+mandarin-kind: navigation
+mandarin-level: beginner
+mandarin-summary: Polar questions, contrastive negators, aspect, and basic quantification.
+
+! L02 · Questions and negation
+
+Polar questions, contrastive negators, aspect, and basic quantification.
+
+!! Vocabulary — <$count filter="[tag[Mandarin Vocabulary]contains:mandarin-lessons[L02]]"/> entries
+
+<$list filter="[tag[Mandarin Vocabulary]contains:mandarin-lessons[L02]sort[mandarin-pinyin]]">
+<div class="mandarin-index-row"><span class="mandarin-ref-title"><$link/></span> <span class="mandarin-ref-description">(<$view field="mandarin-pinyin"/>) — <$view field="mandarin-gloss"/></span></div>
+</$list>
+
+!! Lesson
+[[Lesson/02 Questions and Negation]]
+
+[[Vocabulary by Lesson]] · [[Vocabulary Index]]

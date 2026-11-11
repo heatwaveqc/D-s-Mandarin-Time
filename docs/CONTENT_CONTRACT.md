@@ -21,6 +21,10 @@ All regular content records need `tags`, `type: text/vnd.tiddlywiki`, `mandarin-
 
 ## Dependencies
 
+Vocabulary lesson buckets are specified with `mandarin-lessons: L01 L03`. One word may be introduced or revisited in multiple lessons. Do not put the full target vocabulary in a single tiddler or an unbounded auto-rendered index: all public vocabulary lists should use lesson-scoped `contains:mandarin-lessons[Lxx]` filters.
+
+Audio fields are `mandarin-audio`, `mandarin-audio-status`, and `mandarin-audio-license`. See `docs/AUDIO_ASSETS.md`; the first sample is a credited human recording, not neural TTS.
+
 In `mandarin-prerequisites`, use **exact** existing tiddler titles in TiddlyWiki list notation:
 
 ```

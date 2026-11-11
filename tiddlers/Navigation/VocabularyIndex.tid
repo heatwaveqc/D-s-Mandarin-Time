@@ -6,6 +6,20 @@ mandarin-level: foundation
 
 ! Vocabulary Index
 
-Entries contain simplified characters, pinyin, grammatical category, context, and links to lessons.
+The vocabulary corpus grows as ''individual word tiddlers'', not one enormous list. This front page deliberately avoids rendering thousands of entries at once.
 
-<$list filter="[tag[Mandarin Vocabulary]sort[title]]"><div class="mandarin-index-row"><$link/> <$view field="mandarin-pinyin"/> — <$view field="mandarin-gloss"/><$view field="mandarin-summary"/></div></$list>
+<div class="mandarin-note">Use [[Vocabulary by Lesson]] for bounded, context-aware word lists, or the sidebar search for an individual Chinese word or pinyin spelling.</div>
+
+!! Lesson groupings
+* [[Lesson Vocabulary/L01]] — first sentences
+* [[Lesson Vocabulary/L02]] — questions and negation
+* [[Lesson Vocabulary/L03]] — sword lesson and wuxia context
+
+!! Other ways to browse
+* [[Wuxia Index]] — themed words
+* [[Character Index]] — components and character families
+* [[Course Map]] — unlock order
+
+''Current pilot:'' <$count filter="[tag[Mandarin Vocabulary]]"/> vocabulary tiddlers.
+
+The eventual ~7,000-word target will be partitioned across lessons, plus thematic collections. Each lemma is entered only once; lesson and topic membership are metadata, not duplicated glossary text.

@@ -1,0 +1,23 @@
+title: Audio Lab
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Navigation]]
+mandarin-kind: navigation
+mandarin-level: foundation
+
+! Mandarin Audio Lab
+
+A technical pilot for the workflow ''audio recording → repository → static GitHub Pages → playback within a vocabulary entry''.
+
+!! 你好 · nǐ hǎo · hello
+
+<div class="mandarin-audio"><audio controls="controls" preload="none" src="audio/nihao.mp3">Your browser does not support this audio player.</audio><div class="mandarin-audio-caption">Human recording; listen for third-tone sandhi. [[Vocabulary/你好]]</div></div>
+
+This clip is adapted from a licensed Wikimedia Commons recording credited in [[Audio Attribution]]. We deliberately did ''not'' use the available offline synthesizer: its Mandarin dictionary was incomplete, so its output could not be trusted as a tone model.
+
+!! Next tests
+* Verify desktop and mobile playback on the deployed site.
+* Add sound-label metadata to the vocabulary schema.
+* Compare native speaker, licensed voice recordings, and high-quality Mandarin TTS before bulk generation.
+* Build blind listening exercises that hide Hanzi and pinyin until after a learner answers.
+
+[[Audio Attribution]]

@@ -1,0 +1,16 @@
+title: Audio Attribution
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Navigation]]
+mandarin-kind: navigation
+mandarin-level: foundation
+
+! Audio attribution
+
+* ''Clip:'' 你好 (nǐ hǎo) — Mandarin greeting, pilot recording.
+* ''Creator:'' Sjors Provoost, 15 February 2011.
+* ''Source:'' https://commons.wikimedia.org/wiki/File:Zh_n%C7%90_h%C7%8Eo.ogg
+* ''License:'' https://creativecommons.org/licenses/by-sa/3.0/ — Creative Commons Attribution-ShareAlike 3.0 Unported.
+* ''Modification:'' recompressed from Ogg Vorbis to MP3 for lightweight, widely compatible web playback; no intentional change to the spoken words.
+* ''File in this repository:'' `assets/audio/nihao.mp3`. The audio remains under CC BY-SA 3.0. The rest of this wiki is not automatically relicensed under the audio's license.
+
+[[Audio Lab]] · [[Vocabulary/你好]]

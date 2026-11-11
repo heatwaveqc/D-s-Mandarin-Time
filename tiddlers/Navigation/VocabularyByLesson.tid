@@ -1,0 +1,15 @@
+title: Vocabulary by Lesson
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Navigation]]
+mandarin-kind: navigation
+mandarin-level: foundation
+
+! Vocabulary by Lesson
+
+Vocabulary is selected as short lists, scoped to lessons. Reuse a word in multiple lessons by adding lesson IDs to its `mandarin-lessons` field, not by copying the word tiddler.
+
+<div class="mandarin-index-row">[[Lesson Vocabulary/L01]] — initial clauses (<$count filter="[tag[Mandarin Vocabulary]contains:mandarin-lessons[L01]]"/> entries)</div>
+<div class="mandarin-index-row">[[Lesson Vocabulary/L02]] — questions and negation (<$count filter="[tag[Mandarin Vocabulary]contains:mandarin-lessons[L02]]"/> entries)</div>
+<div class="mandarin-index-row">[[Lesson Vocabulary/L03]] — wuxia primer (<$count filter="[tag[Mandarin Vocabulary]contains:mandarin-lessons[L03]]"/> entries)</div>
+
+[[Course Map]] · [[Vocabulary Index]]
