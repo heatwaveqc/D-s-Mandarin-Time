@@ -1,0 +1,48 @@
+title: Vocabulary Standard
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Navigation]]
+mandarin-kind: navigation
+mandarin-level: foundation
+
+! Vocabulary standard
+
+<div class="mandarin-hero"><div class="mandarin-hero-label">Curriculum target</div><div class="mandarin-hero-zh">七千基础词 · 武侠专项</div><div class="mandarin-pinyin">qī qiān jīchǔ cí · wǔxiá zhuānxiàng</div><div>7,000 general Mandarin words plus 1,000–2,000 additional wuxia/xianxia words.</div></div>
+
+!! General Mandarin: 7,000 entries
+
+|!Band|!Target|!Selection principle|
+|Fundamental|2,000|Core high-frequency spoken + written vocabulary, including grammar words|
+|High-use|3,000|Frequent broader conversation, media, social, written and narrative vocabulary|
+|High-availability|2,000|Words commonly *known* but not necessarily frequently said or written: practical familiar things and concepts|
+
+!! Wuxia/xianxia specialization: +1,000–2,000
+
+Genre vocabulary for martial hierarchy, swords and weapons, techniques, inner power/cultivation, historical and literary discourse, kinship, social conventions and narrative formulas. Where a word is already in the core 7k, reuse its entry and tag it for wuxia; ''do not count it twice.''
+
+!! Coverage goal
+
+Aim for ''95–98% lexical token coverage'' of designated material, with spoken conversation, general written text and wuxia literature reported ''separately''. This is a ''measured objective, not a promise'' that 7,000 words cover all genres.
+
+The Italian ''Vocabolario di base'' framework inspired these three bands, but its frequency percentages cannot be transplanted directly to Mandarin. In one published Taiwan Mandarin corpus comparison, 7,000 rank-ordered words covered 96.95% of spontaneous conversation, but only 82.55% of written text. Different registers demand different learning plans.
+
+!! Sourcing approach
+
+Use a ''curated combination'' of SUBTLEX-CH (spoken), wordfreq zh (mixed registers), the November 2025 11,000-entry HSK exam syllabus (pedagogical alignment, *not frequency*), and a deliberately constructed high-availability and genre-specific supplement. Never silently treat character frequency as word frequency.
+
+!! Browse
+
+* [[Vocabulary by Lesson]] — small lesson groups, not one 7,000-item page
+* [[Vocabulary Index]] — lexical records
+* [[Wuxia Index]] — themed context
+* [[Course Map]] — grammar prerequisites and progression
+
+!! Research and source notes
+
+Full source report and the binding target contract are in the repository:
+
+* https://github.com/heatwaveqc/D-s-Mandarin-Time/blob/main/docs/VOCABULARY_TARGET_STANDARD.md
+* https://github.com/heatwaveqc/D-s-Mandarin-Time/blob/main/docs/VOCABULARY_SOURCE_SURVEY.md
+
+Reference: Tseng (2013), https://aclanthology.org/O13-2001.pdf . Further details on the linked research report.
+
+''Status:'' curriculum target approved; candidate 7k list not yet selected, ranked, or populated. Existing vocabulary entries are pedagogical pilot records.

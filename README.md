@@ -13,6 +13,12 @@ This repository is intentionally independent of GATES, while following the same 
 - Each push to `main` checks content integrity and rebuilds the static site. Before Pages is enabled, the workflow uploads the compiled `index.html` as a downloadable Actions artifact. After Pages is enabled, the same workflow publishes the site.
 - To build locally (optional): `npx --yes tiddlywiki@5.4.1 . --build index` (output `public/index.html`).
 
+## Lexical curriculum target
+
+The approved target is a **7,000-entry general Mandarin lexicon** (2,000 fundamental, 3,000 high-use, 2,000 high-availability) **plus 1,000–2,000 additional wuxia/xianxia entries**. The 95–98% lexical token coverage goal is to be **measured** separately for conversation, general written Mandarin and genre material; no single vocabulary count guarantees that coverage.
+
+See [Target Vocabulary Standard](docs/VOCABULARY_TARGET_STANDARD.md) and [Candidate Source Survey](docs/VOCABULARY_SOURCE_SURVEY.md). Use mixed-register frequency evidence, SUBTLEX-CH, the 2025 HSK syllabus, and native high-availability/genre validation. Do not import entire proprietary dictionaries or novel texts into this public repository.
+
 ## Content model
 
 - `tiddlers/Navigation`: front page, indexes, course map, study instructions.

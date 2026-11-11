@@ -1,12 +1,12 @@
-# Work handoff — Vocabulary ingestion (v0.1)
+# Work handoff — Vocabulary ingestion (v1.0)
 
 Use this contract when populating the Mandarin course through ChatGPT Work or an equivalent batch process.
 
 ## Scope and source of truth
 
-The course is a standalone, public **static TiddlyWiki**, not a Node server. **One lexical entry = one vocabulary tiddler**. Never create one monolithic 7,000-word tiddler or an unbounded page that renders all word records. The target of roughly 7,000 words is a curriculum goal, *not* an implicit claim that a particular HSK edition contains exactly that many items.
+The course is a standalone, public **static TiddlyWiki**, not a Node server. **One lexical entry = one vocabulary tiddler**. Never create one monolithic 7,000-word tiddler or an unbounded page that renders all word records. The approved target is **7,000 general Mandarin lexical entries (2k fundamental + 3k high-use + 2k high-availability) plus 1–2k additional unique wuxia/xianxia lexical entries**. Desired 95–98% token coverage must be measured independently for spoken, general written, and genre corpora; the target does not guarantee that percentage. See [VOCABULARY_TARGET_STANDARD.md](VOCABULARY_TARGET_STANDARD.md) and [VOCABULARY_SOURCE_SURVEY.md](VOCABULARY_SOURCE_SURVEY.md).
 
-Before bulk ingestion, select a source vocabulary list, its version, and reuse terms (e.g. an appropriately licensed frequency/HSK list). Record bibliographic provenance. Do not assume that a third-party website's 7k list is the official exam list.
+Before bulk ingestion, perform a small source and rights audit. Prefer **wordfreq zh** as mixed-register candidate frequency backbone, **SUBTLEX-CH** as spoken/subtitle reference, and the **November 2025 HSK syllabus** as pedagogical crosswalk (not frequency order). The 2k high-availability tier and 1–2k wuxia-specific layer require additional curated evaluation; raw frequency alone cannot select these. Select a source vocabulary list, its version, and reuse terms (e.g. an appropriately licensed frequency/HSK list). Record bibliographic provenance. Do not assume that a third-party website's 7k list is the official exam list.
 
 ## Content format
 
@@ -23,6 +23,10 @@ mandarin-pinyin: shīfu
 mandarin-gloss: master; respected mentor
 mandarin-pos: noun
 mandarin-lessons: L03
+# Optional after frequency/genre review:
+# mandarin-lexical-band: wuxia-specialist
+# mandarin-registers: spoken fiction literary
+# mandarin-topics: wuxia martial-arts
 ```
 
 After one blank line, include a short definition, at least one example with **Hanzi, tone-marked Pinyin and English**, and links to grammatical or character notes. Never invent a word's pronunciation from its component characters. For heteronyms, alternate readings, proper names, tone sandhi and polysemy, explicitly document when/why a reading is used. Where practical track traditional form and regional usage as optional metadata.
@@ -43,12 +47,12 @@ Suggested initial lesson size: 15–30 *new* items, fewer in foundational lesson
 
 ## Batch workflow
 
-1. Start with an adjudicated source and a pilot of 20–50 words; explicitly flag ambiguous or suspicious entries.
+1. Start with an adjudicated, appropriately reusable source/version and a pilot of 20–50 words; explicitly flag ambiguous or suspicious entries. Do not bulk copy proprietary dictionaries, news corpora, or copyrighted fiction into this public repo.
 2. Group by grammatical dependencies, character/sound families, frequency, usefulness, and recurring wuxia settings. Do not group solely by alphabetic Pinyin order.
 3. Add lesson index before its vocabulary. Populate **one word per tiddler**, and update `mandarin-lessons` on shared words.
 4. Commit small, reviewable batches (e.g. <=100 entries per commit).
 5. Run `python3 scripts/validate_wiki.py` and confirm GitHub Actions build/deploy. Repair duplicates, missing references, and broken lesson IDs before the next batch.
-6. Report real counts, source/version, newly introduced lesson IDs, and any uncertainties. Do not claim that all words have been reviewed solely because CI passes.
+6. Report real counts, source/version, tentative lexical bands, overlap with wuxia, newly introduced lesson IDs, and any uncertainties. Do not claim that all words have been reviewed solely because CI passes.
 
 ## Audio
 

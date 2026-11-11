@@ -1,4 +1,4 @@
-# Mandarin content contract (v0.1)
+# Mandarin content contract (v1.0)
 
 ## General structure
 
@@ -18,6 +18,12 @@ The content is organized by **kind**, not by rigid lesson order. The course orde
 | `roadmap` | Program-level map (future) | common fields |
 
 All regular content records need `tags`, `type: text/vnd.tiddlywiki`, `mandarin-kind` and `mandarin-level`.
+
+## Curriculum lexical standard
+
+The binding [vocabulary target standard](VOCABULARY_TARGET_STANDARD.md) is **2k fundamental + 3k high-use + 2k high-availability (7k general), plus 1k–2k additional wuxia/xianxia-specific lexical entries**. Goal is 95–98% measured token coverage in separately evaluated domains, never a promised universal result. `mandarin-lexical-band` is optional for provisional pilot words, and when set must be one of `fundamental`, `high-use`, `high-availability`, `wuxia-specialist`. Overlapping topics go under `mandarin-topics`; avoid duplicate lexical entries.
+
+See also [the source survey](VOCABULARY_SOURCE_SURVEY.md). Final ranks require corpus/source/edition metadata and rights check; no bulk reproduction of copyrighted data.
 
 ## Dependencies
 

@@ -10,6 +10,10 @@ The vocabulary corpus grows as ''individual word tiddlers'', not one enormous li
 
 <div class="mandarin-note">Use [[Vocabulary by Lesson]] for bounded, context-aware word lists, or the sidebar search for an individual Chinese word or pinyin spelling.</div>
 
+!! Target vocabulary standard
+
+[[Vocabulary Standard]] — 2,000 fundamental, 3,000 high-use, 2,000 high-availability, plus 1–2k wuxia-specific items. The 95–98% coverage objective must be tested separately in conversation, written Mandarin, and wuxia.
+
 !! Lesson groupings
 * [[Lesson Vocabulary/L01]] — first sentences
 * [[Lesson Vocabulary/L02]] — questions and negation
@@ -22,4 +26,4 @@ The vocabulary corpus grows as ''individual word tiddlers'', not one enormous li
 
 ''Current pilot:'' <$count filter="[tag[Mandarin Vocabulary]]"/> vocabulary tiddlers.
 
-The eventual ~7,000-word target will be partitioned across lessons, plus thematic collections. Each lemma is entered only once; lesson and topic membership are metadata, not duplicated glossary text.
+The general 7,000-word plus 1,000–2,000 wuxia-specialist target will be partitioned across lessons, plus thematic collections. Each lemma is entered only once; lesson and topic membership are metadata, not duplicated glossary text.
