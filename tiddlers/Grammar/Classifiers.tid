@@ -1,0 +1,23 @@
+title: Grammar/Classifiers
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Grammar]]
+mandarin-kind: grammar
+mandarin-level: beginner
+mandarin-prerequisites: [[Grammar/SVO Word Order]]
+
+! Classifiers / measure words (量词, liàngcí)
+
+In typical counted or demonstrative noun phrases, Mandarin uses a classifier before the noun.
+
+* 一本书 — yì běn shū — one book
+* 这本书 — zhè běn shū — this book
+* 一个人 — yí ge rén — one person
+
+本 (běn) is the classifier commonly used with books and bound volumes; 个 (gè) is a widely used general classifier.
+
+''Tone sandhi note:'' 一 (yī) is commonly realized as ''yì'' before a first-, second-, or third-tone syllable, and ''yí'' before a fourth-tone syllable. The spelling can show the resulting pronunciation in teaching examples.
+
+[[Vocabulary/本]] · [[Vocabulary/书]] · [[Vocabulary/这]]
+
+!! Prerequisites
+<$list filter="[<currentTiddler>get[mandarin-prerequisites]enlist-input[]]" variable="prereq"><div>← <$link to=<<prereq>>><$text text=<<prereq>>/></$link></div></$list>

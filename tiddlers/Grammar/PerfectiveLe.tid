@@ -1,0 +1,22 @@
+title: Grammar/Perfective 了
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Grammar]]
+mandarin-kind: grammar
+mandarin-level: beginner
+mandarin-prerequisites: [[Grammar/Aspect and Tense]]
+
+! Verbal 了 (le): perfective viewpoint
+
+Verbal 了 commonly presents a bounded event as a whole. It is ''not'' a generic past-tense suffix.
+
+* 我吃了饭。 — Wǒ chī le fàn. — I ate / have eaten.
+* 我昨天吃了饭。 — Wǒ zuótiān chī le fàn. — I ate yesterday.
+
+Mandarin also has a clause-final 了 often associated with a new situation or change of state. These are related in form but should not be collapsed into one English gloss.
+
+Event boundedness, negation, complements, and sentence structure influence the distribution of 了. These examples are introductory rather than a complete licensing rule.
+
+[[Grammar/Negation with 不 and 没]]
+
+!! Prerequisites
+<$list filter="[<currentTiddler>get[mandarin-prerequisites]enlist-input[]]" variable="prereq"><div>← <$link to=<<prereq>>><$text text=<<prereq>>/></$link></div></$list>

@@ -1,0 +1,22 @@
+title: Grammar/Progressive 在
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Grammar]]
+mandarin-kind: grammar
+mandarin-level: beginner
+mandarin-prerequisites: [[Grammar/Aspect and Tense]]
+
+! Progressive 在 (zài)
+
+Before many activity verbs, 在 marks an action in progress.
+
+* 我在学中文。 — Wǒ zài xué Zhōngwén. — I'm studying Chinese.
+* 他在吃饭。 — Tā zài chī fàn. — He's eating a meal.
+
+在 can also be a verb/preposition associated with location; its function is determined by syntax.
+
+This construction does not simply mean “present tense”: the progressive event can be located in a past time frame too.
+
+[[Vocabulary/在]] · [[Vocabulary/学]]
+
+!! Prerequisites
+<$list filter="[<currentTiddler>get[mandarin-prerequisites]enlist-input[]]" variable="prereq"><div>← <$link to=<<prereq>>><$text text=<<prereq>>/></$link></div></$list>

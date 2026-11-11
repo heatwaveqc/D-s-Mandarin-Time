@@ -1,0 +1,27 @@
+title: Lesson/02 Questions and Negation
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Lesson]]
+mandarin-kind: lesson
+mandarin-level: beginner
+mandarin-prerequisites: [[Grammar/Negation with 不 and 没]] [[Grammar/Questions with 吗]]
+mandarin-summary: Distinguish general negation from non-occurrence and form polar questions.
+
+''Objectives:'' Distinguish general negation from non-occurrence and form polar questions.
+
+
+! Negation and questions
+
+* 你学中文吗？ — Nǐ xué Zhōngwén ma? — Do you study Chinese?
+* 我不吃饭。 — Wǒ bù chī fàn. — I don't eat / won't eat.
+* 我没吃饭。 — Wǒ méi chī fàn. — I haven't eaten / didn't eat.
+
+''Key analysis:'' Compare the event-structure implications of 不 (bù) and 没 (méi), rather than treating them as present/past conjugations.
+
+[[Exercise/02 Negation Challenge]] · [[Lesson/03 The Sword Lesson]]
+
+
+!! Prerequisites
+<$list filter="[<currentTiddler>get[mandarin-prerequisites]enlist-input[]]" variable="prereq"><div>← <$link to=<<prereq>>><$text text=<<prereq>>/></$link></div></$list>
+
+
+[[Course Map]]

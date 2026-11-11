@@ -1,0 +1,33 @@
+title: Lesson/01 First Sentences
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Lesson]]
+mandarin-kind: lesson
+mandarin-level: foundation
+mandarin-prerequisites: [[Grammar/SVO Word Order]]
+mandarin-summary: Build and analyze a Mandarin subject–verb–object clause.
+
+''Objectives:'' Build and analyze a Mandarin subject–verb–object clause.
+
+
+! First sentences
+
+Start with [[Grammar/SVO Word Order]]. These are ''structural'' examples, not a request to memorize disconnected words.
+
+|!Hanzi|!Pinyin|!Meaning|
+|我学中文。|Wǒ xué Zhōngwén.|I study Chinese.|
+|他吃饭。|Tā chī fàn.|He eats / has a meal.|
+|师父教弟子剑法。|Shīfu jiāo dìzǐ jiànfǎ.|The master teaches the disciple sword techniques.|
+
+! Analyze
+# Identify the predicate in each sentence.
+# Why is the third example not merely a one-object clause?
+# Build a new sentence with [[Vocabulary/我]] and [[Vocabulary/吃]].
+
+''Next:'' [[Lesson/02 Questions and Negation]]; [[Exercise/01 Clause Analysis]].
+
+
+!! Prerequisites
+<$list filter="[<currentTiddler>get[mandarin-prerequisites]enlist-input[]]" variable="prereq"><div>← <$link to=<<prereq>>><$text text=<<prereq>>/></$link></div></$list>
+
+
+[[Course Map]]

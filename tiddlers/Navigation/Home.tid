@@ -1,0 +1,29 @@
+title: Home
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Navigation]]
+mandarin-kind: navigation
+mandarin-level: foundation
+
+! Welcome to D's Mandarin Time
+
+A ''grammar-first Mandarin course'' built as a searchable, modular TiddlyWiki. Every Mandarin example is paired with tone-marked Hanyu Pinyin. The early examples use ''simplified Chinese characters''.
+
+!! Start here
+* [[Course Map]] — curriculum stages and prerequisite chain
+* [[Lesson/01 First Sentences]] — our first actual lesson
+* [[Reading/The Master's Book]] — four-line beginner wuxia reading
+* [[Wiki Guide]] — how to navigate and use the records
+
+!! Explore the reference
+|!Area|!What is here|
+|[[Grammar Index]]|Analysis of constructions, not just memorized patterns|
+|[[Vocabulary Index]]|Words and phrases with tones, POS, usage, and links|
+|[[Character Index]]|Character composition and evidence-aware component notes|
+|[[Reading Index]]|Graded scenes with translations and morphology notes|
+|[[Exercise Index]]|Written checks with optional answer reveals|
+|[[Wuxia Index]]|Martial-world vocabulary and story paths|
+
+!! Current pilot
+<$list filter="[tag[Mandarin Lesson]sort[title]]"><div class="mandarin-index-row"><$link/> — <$view field="mandarin-summary"/></div></$list>
+
+<div class="mandarin-note">''Progress note:'' this is a prototype curriculum, not a completed HSK syllabus. The published wiki is read-only; browser changes are not automatically written to GitHub. Do not store personal test scores in this public repository.</div>

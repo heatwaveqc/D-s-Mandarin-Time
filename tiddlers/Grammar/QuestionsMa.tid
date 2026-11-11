@@ -1,0 +1,21 @@
+title: Grammar/Questions with 吗
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Grammar]]
+mandarin-kind: grammar
+mandarin-level: beginner
+mandarin-prerequisites: [[Grammar/SVO Word Order]]
+
+! Polar questions with 吗 (ma)
+
+Attach sentence-final 吗 (ma, neutral tone) to a declarative proposition to ask a yes/no question.
+
+* 你学中文。 — Nǐ xué Zhōngwén. — You study Chinese.
+* 你学中文吗？ — Nǐ xué Zhōngwén ma? — Do you study Chinese?
+* 他是弟子吗？ — Tā shì dìzǐ ma? — Is he a disciple?
+
+Mandarin also has A-not-A questions and other interrogative patterns, which we will add later.
+
+[[Vocabulary/吗]]
+
+!! Prerequisites
+<$list filter="[<currentTiddler>get[mandarin-prerequisites]enlist-input[]]" variable="prereq"><div>← <$link to=<<prereq>>><$text text=<<prereq>>/></$link></div></$list>

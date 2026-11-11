@@ -1,0 +1,23 @@
+title: Exercise/02 Negation Challenge
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Exercise]]
+mandarin-kind: exercise
+mandarin-level: beginner
+mandarin-prerequisites: [[Lesson/02 Questions and Negation]]
+
+! Negation diagnostic
+
+# Translate “I didn't eat” using 没 (méi).
+# Translate “Do you study Chinese?” with the question particle 吗 (ma).
+# Explain why 不 (bù) and 没 (méi) are not merely a present/past pair.
+
+<details><summary>Show model answers</summary>
+
+# 我没吃饭。 — Wǒ méi chī fàn.
+# 你学中文吗？ — Nǐ xué Zhōngwén ma?
+# 不 frequently negates a habit, disposition, or prediction; 没 denies the occurrence of an event or possession/existence in 没有.
+
+</details>
+
+!! Prerequisites
+<$list filter="[<currentTiddler>get[mandarin-prerequisites]enlist-input[]]" variable="prereq"><div>← <$link to=<<prereq>>><$text text=<<prereq>>/></$link></div></$list>

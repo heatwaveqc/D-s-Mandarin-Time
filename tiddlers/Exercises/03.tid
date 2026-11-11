@@ -1,0 +1,27 @@
+title: Exercise/03 Read and Interpret
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Exercise]]
+mandarin-kind: exercise
+mandarin-level: beginner
+mandarin-prerequisites: [[Lesson/03 The Sword Lesson]]
+
+! Comprehension: The Master's Book
+
+Read [[Reading/The Master's Book]], then answer ''without'' viewing the gloss.
+
+# Who has the book?
+# Which expression means “this book”?
+# What does the master teach the disciple?
+# Is there any explicit tense inflection in the passage?
+
+<details><summary>Show answers</summary>
+
+# 师父 (shīfu), the master.
+# 这本书 (zhè běn shū).
+# 剑法 (jiànfǎ), sword techniques.
+# No. Mandarin verbs do not inflect for tense, though time can be supplied by context.
+
+</details>
+
+!! Prerequisites
+<$list filter="[<currentTiddler>get[mandarin-prerequisites]enlist-input[]]" variable="prereq"><div>← <$link to=<<prereq>>><$text text=<<prereq>>/></$link></div></$list>

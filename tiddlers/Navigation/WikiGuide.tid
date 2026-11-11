@@ -1,0 +1,38 @@
+title: Wiki Guide
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Navigation]]
+mandarin-kind: navigation
+mandarin-level: foundation
+
+! Using this wiki
+
+This site is ''navigable'', not a collaborative editing server. Follow links between lessons, concepts, example passages, characters, and vocabulary. The sidebar search searches tiddler titles and bodies.
+
+!! How to study
+# Read the lesson's objectives.
+# Follow its prerequisite concepts if unfamiliar.
+# Read each example with both Hanzi and tone-marked Pinyin; say it aloud.
+# Try the linked exercise ''before'' opening its answer key.
+# Read the linked story and revisit vocabulary by opening individual word entries.
+# Keep personal retention scores outside this public repo.
+
+!! What's a tiddler?
+A tiddler is a modular record. A vocabulary item can be linked by many lessons without being copied; the indexes are generated from tags.
+
+!! Metadata
+* `mandarin-kind`: navigation, roadmap, grammar, vocabulary, character, lesson, reading, exercise
+* `mandarin-level`: foundation, beginner, intermediate, advanced (provisional)
+* `mandarin-prerequisites`: space-delimited list of tiddler titles using `[[Title With Spaces]]`
+* Word fields: `mandarin-hanzi`, `mandarin-pinyin`, `mandarin-gloss`, `mandarin-pos`
+* `mandarin-summary`: short descriptions for the lesson index
+
+The prerequisite validator checks for missing records and cycles. Language content remains subject to human review.
+
+!! Editorial principles
+* Grammar first, but speech and listening must eventually be trained separately.
+* Explain aspect and information structure correctly; avoid false equivalences to English tenses.
+* Distinguish phonetic components, semantic components, historical etymology, and mnemonic guesses.
+* Model natural Chinese sentences, and mark deliberately simplified learner sentences.
+* Keep personal learner data out of the public repository.
+
+[[Back to Home|Home]]

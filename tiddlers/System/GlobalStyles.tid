@@ -1,0 +1,11 @@
+title: $:/mandarin/Style
+type: text/css
+tags: $:/tags/Stylesheet
+
+/* The built wiki is static, and does not require these styles to read content. */
+.tc-tiddler-frame { border-radius: 10px; }
+.tc-title { letter-spacing: -0.01em; }
+.mandarin-hanzi { font-size: 2.2em; line-height: 1.4; }
+.mandarin-pinyin { color: #466482; font-style: italic; }
+.mandarin-note { border-left: 3px solid #6f91ae; padding: .55em 1em; background: #f3f7fa; }
+.mandarin-index-row { padding: .35em 0; border-bottom: 1px solid #e6ebef; }

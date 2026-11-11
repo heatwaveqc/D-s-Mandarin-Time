@@ -1,0 +1,24 @@
+title: Grammar/Negation with 不 and 没
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Grammar]]
+mandarin-kind: grammar
+mandarin-level: beginner
+mandarin-prerequisites: [[Grammar/SVO Word Order]]
+
+! Negation is sensitive to event structure
+
+* 不 (bù) is a frequent negator of habits, general facts, willingness, and future predictions.
+* 没 (méi; 没有 méiyǒu) often denies that an event occurred, and negates existential/possessive 有 (yǒu).
+
+Compare:
+* 我不吃饭。 — Wǒ bù chī fàn. — I don't eat / won't eat (depending on context).
+* 我没吃饭。 — Wǒ méi chī fàn. — I haven't eaten / didn't eat.
+* 我没有书。 — Wǒ méiyǒu shū. — I don't have a book.
+
+''Avoid the shortcut'' “不 = present, 没 = past.” It is inaccurate. This distinction interacts with aspect, modality, and pragmatics.
+
+!! Related
+[[Vocabulary/不]] · [[Vocabulary/没]] · [[Vocabulary/有]]
+
+!! Prerequisites
+<$list filter="[<currentTiddler>get[mandarin-prerequisites]enlist-input[]]" variable="prereq"><div>← <$link to=<<prereq>>><$text text=<<prereq>>/></$link></div></$list>

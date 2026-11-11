@@ -1,0 +1,22 @@
+title: Grammar/Aspect and Tense
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Grammar]]
+mandarin-kind: grammar
+mandarin-level: beginner
+mandarin-prerequisites: [[Grammar/SVO Word Order]]
+
+! Time reference versus viewpoint
+
+Mandarin verbs do not inflect for grammatical tense. Temporal location can come from time expressions, context, and modal/aspectual constructions.
+
+Aspect describes the ''internal temporal structure/viewpoint'' of an event; it isn't identical to past, present, or future.
+
+* 我昨天学中文。 — Wǒ zuótiān xué Zhōngwén. — I studied Chinese yesterday.
+* 我明天学中文。 — Wǒ míngtiān xué Zhōngwén. — I'll study Chinese tomorrow.
+
+Neither sentence requires a verb ending for time. See [[Grammar/Perfective 了]] for perfective viewpoint and [[Grammar/Progressive 在]] for ongoing action.
+
+''Nuance:'' 了 has multiple functions, and verbal perfective 了 should not be conflated with sentence-final change-of-state 了.
+
+!! Prerequisites
+<$list filter="[<currentTiddler>get[mandarin-prerequisites]enlist-input[]]" variable="prereq"><div>← <$link to=<<prereq>>><$text text=<<prereq>>/></$link></div></$list>

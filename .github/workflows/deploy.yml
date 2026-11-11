@@ -1,0 +1,67 @@
+name: Validate and deploy Mandarin TiddlyWiki
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: mandarin-wiki-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Validate tiddler metadata and prerequisites
+        run: python3 scripts/validate_wiki.py
+
+      - name: Run validator regression tests
+        run: python3 -m unittest discover -s scripts -p 'test_*.py' -v
+
+      - name: Set up Node (only on GitHub runner)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install pinned TiddlyWiki
+        run: npm install --global tiddlywiki@5.4.1
+
+      - name: Build self-contained, read-only Pages edition
+        run: tiddlywiki . --build index
+
+      - name: Check generated site
+        shell: bash
+        run: |
+          test -s public/index.html
+          grep -q "D's Mandarin Time" public/index.html
+          grep -q "师父有一本书" public/index.html
+          echo "Built static wiki:"
+          ls -lh public/index.html
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

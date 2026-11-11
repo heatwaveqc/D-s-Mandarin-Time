@@ -1,0 +1,31 @@
+title: Lesson/03 The Sword Lesson
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Lesson]]
+mandarin-kind: lesson
+mandarin-level: beginner
+mandarin-prerequisites: [[Lesson/01 First Sentences]] [[Grammar/Classifiers]] [[Grammar/Topic and Comment]]
+mandarin-summary: Read a four-line wuxia scene and follow links into each unfamiliar word.
+
+''Objectives:'' Read a four-line wuxia scene and follow links into each unfamiliar word.
+
+
+! The sword lesson
+
+Read [[Reading/The Master's Book]] without looking at the translation first.
+
+''Focus:''
+# How is 一本书 (yì běn shū) assembled?
+# What is the object of 喜欢 (xǐhuan)?
+# What does the master teach?
+# How does the double-object example connect to [[Grammar/SVO Word Order]]?
+
+Wuxia vocabulary: [[Vocabulary/师父]], [[Vocabulary/弟子]], [[Vocabulary/剑法]].
+
+[[Exercise/03 Read and Interpret]]
+
+
+!! Prerequisites
+<$list filter="[<currentTiddler>get[mandarin-prerequisites]enlist-input[]]" variable="prereq"><div>← <$link to=<<prereq>>><$text text=<<prereq>>/></$link></div></$list>
+
+
+[[Course Map]]

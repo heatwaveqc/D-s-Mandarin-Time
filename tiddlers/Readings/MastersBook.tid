@@ -1,0 +1,38 @@
+title: Reading/The Master's Book
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Reading]]
+mandarin-kind: reading
+mandarin-level: beginner
+mandarin-prerequisites: [[Lesson/01 First Sentences]] [[Grammar/Classifiers]]
+
+! The Master's Book
+
+''Genre:'' wuxia primer — original pedagogical microfiction.  
+''Grammar:'' [[Grammar/SVO Word Order]], [[Grammar/Classifiers]].
+
+!! Text (try reading without the gloss)
+
+<div class="mandarin-hanzi">师父有一本书。</div>
+<div class="mandarin-hanzi">弟子喜欢这本书。</div>
+<div class="mandarin-hanzi">师父教弟子剑法。</div>
+<div class="mandarin-hanzi">弟子学剑法。</div>
+
+<details><summary>Reveal pinyin and translation</summary>
+
+|!Hanzi|!Pinyin|!English|
+|师父有一本书。|Shīfu yǒu yì běn shū.|The master has a book.|
+|弟子喜欢这本书。|Dìzǐ xǐhuan zhè běn shū.|The disciple likes this book.|
+|师父教弟子剑法。|Shīfu jiāo dìzǐ jiànfǎ.|The master teaches the disciple sword techniques.|
+|弟子学剑法。|Dìzǐ xué jiànfǎ.|The disciple studies sword techniques.|
+
+</details>
+
+!! Interpret the structure
+* 一本书 (yì běn shū): number + classifier + noun
+* 这本书 (zhè běn shū): demonstrative + classifier + noun
+* 教弟子剑法 (jiāo dìzǐ jiànfǎ): teach + learner + material
+
+!! Linked words
+[[Vocabulary/师父]] · [[Vocabulary/弟子]] · [[Vocabulary/有]] · [[Vocabulary/一]] · [[Vocabulary/本]] · [[Vocabulary/书]] · [[Vocabulary/这]] · [[Vocabulary/喜欢]] · [[Vocabulary/教]] · [[Vocabulary/剑法]] · [[Vocabulary/学]]
+
+[[Lesson/03 The Sword Lesson]] · [[Exercise/03 Read and Interpret]]

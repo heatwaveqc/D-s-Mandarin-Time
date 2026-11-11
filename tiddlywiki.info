@@ -1,0 +1,17 @@
+{
+  "description": "D's Mandarin Time — Mandarin language learning wiki",
+  "themes": [
+    "tiddlywiki/vanilla",
+    "tiddlywiki/snowwhite"
+  ],
+  "build": {
+    "index": [
+      "--output",
+      "public",
+      "--render",
+      "$:/core/save/all",
+      "index.html",
+      "text/plain"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+title: Exercise Index
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Navigation]]
+mandarin-kind: navigation
+mandarin-level: foundation
+
+! Exercise Index
+
+Test productive knowledge before you reveal the explanation.
+
+<$list filter="[tag[Mandarin Exercise]sort[title]]"><div class="mandarin-index-row"><$link/> <$view field="mandarin-pinyin"/> — <$view field="mandarin-gloss"/><$view field="mandarin-summary"/></div></$list>

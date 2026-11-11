@@ -1,0 +1,11 @@
+title: Grammar Index
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Navigation]]
+mandarin-kind: navigation
+mandarin-level: foundation
+
+! Grammar Index
+
+Each concept has its own page and a prerequisite field.
+
+<$list filter="[tag[Mandarin Grammar]sort[title]]"><div class="mandarin-index-row"><$link/> <$view field="mandarin-pinyin"/> — <$view field="mandarin-gloss"/><$view field="mandarin-summary"/></div></$list>

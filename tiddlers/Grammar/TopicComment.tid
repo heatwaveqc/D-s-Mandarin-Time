@@ -1,0 +1,20 @@
+title: Grammar/Topic and Comment
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Grammar]]
+mandarin-kind: grammar
+mandarin-level: beginner
+mandarin-prerequisites: [[Grammar/SVO Word Order]]
+
+! Topic–comment organization
+
+Mandarin often puts the item being discussed first, then makes a comment about it.
+
+* 我喜欢这本书。 — Wǒ xǐhuan zhè běn shū. — I like this book.
+* 这本书，我很喜欢。 — Zhè běn shū, wǒ hěn xǐhuan. — This book, I really like.
+
+The fronted object can be interpreted as a topic already active or being contrasted in discourse. Topic and grammatical subject are not identical categories.
+
+[[Vocabulary/喜欢]] · [[Vocabulary/很]] · [[Grammar/Classifiers]]
+
+!! Prerequisites
+<$list filter="[<currentTiddler>get[mandarin-prerequisites]enlist-input[]]" variable="prereq"><div>← <$link to=<<prereq>>><$text text=<<prereq>>/></$link></div></$list>

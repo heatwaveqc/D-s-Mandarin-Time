@@ -1,0 +1,11 @@
+title: Reading Index
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Navigation]]
+mandarin-kind: navigation
+mandarin-level: foundation
+
+! Reading Index
+
+Controlled short texts first; longer annotated fiction will follow.
+
+<$list filter="[tag[Mandarin Reading]sort[title]]"><div class="mandarin-index-row"><$link/> <$view field="mandarin-pinyin"/> — <$view field="mandarin-gloss"/><$view field="mandarin-summary"/></div></$list>

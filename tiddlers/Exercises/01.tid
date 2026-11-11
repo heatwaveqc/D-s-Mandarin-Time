@@ -1,0 +1,24 @@
+title: Exercise/01 Clause Analysis
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Exercise]]
+mandarin-kind: exercise
+mandarin-level: foundation
+mandarin-prerequisites: [[Lesson/01 First Sentences]]
+
+! Clause analysis
+
+Without looking at the answer key:
+# Segment: 我学中文。 (Wǒ xué Zhōngwén.)
+# Identify predicate and arguments: 师父教弟子剑法。 (Shīfu jiāo dìzǐ jiànfǎ.)
+# Translate “I eat / have a meal” using the vocabulary entries.
+
+<details><summary>Show model answers</summary>
+
+# 我 / 学 / 中文 — subject / verb / object.
+# 师父 / 教 / 弟子 / 剑法 — subject / teach / learner / material taught.
+# 我吃饭。 — Wǒ chī fàn.
+
+</details>
+
+!! Prerequisites
+<$list filter="[<currentTiddler>get[mandarin-prerequisites]enlist-input[]]" variable="prereq"><div>← <$link to=<<prereq>>><$text text=<<prereq>>/></$link></div></$list>

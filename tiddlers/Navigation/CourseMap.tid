@@ -1,0 +1,37 @@
+title: Course Map
+type: text/vnd.tiddlywiki
+tags: [[Mandarin Navigation]]
+mandarin-kind: navigation
+mandarin-level: foundation
+
+! Grammar-first progression
+
+A ''map of concepts'', not a rigid calendar. A learner can navigate forward or backward as needed.
+
+!! Stage 0: phonological and writing foundations
+* [[Grammar/Tones and Pinyin]] — tone categories and the third-tone sandhi pattern
+* [[Character/Character Structure]] — semantic/phonetic components and radical indexing
+
+!! Stage 1: elementary clause architecture
+* [[Grammar/SVO Word Order]] — basic predicate–argument structure
+* [[Grammar/Negation with 不 and 没]] — contrasting negators
+* [[Grammar/Questions with 吗]] — polar questions
+* [[Grammar/Classifiers]] — number/demonstrative + classifier + noun
+
+!! Stage 2: organizing information and events
+* [[Grammar/Topic and Comment]] — topicalization
+* [[Grammar/Aspect and Tense]] — reference time vs viewpoint
+* [[Grammar/Perfective 了]] — perfective viewpoint, not a past tense
+* [[Grammar/Progressive 在]] — action in progress
+
+!! Stage 3 (planned, not yet authored)
+Resultative complements, directional complements, `把` and `被`, comparisons, modal verbs, relative clauses, discourse particles, and increasingly advanced narrative grammar.
+
+!! Lesson path
+<$list filter="[tag[Mandarin Lesson]sort[title]]"><div class="mandarin-index-row"><$link/> — <$view field="mandarin-summary"/></div></$list>
+
+!! Immersion path
+* [[Reading/The Master's Book]] — controlled, short wuxia scene
+* [[Wuxia Index]] — themed vocabulary
+
+This pilot uses HSK-compatible beginner concepts, not a claim that these entries constitute an official HSK vocabulary list.
