@@ -4,7 +4,7 @@ A grammar-first Mandarin learning wiki, built with [TiddlyWiki](https://tiddlywi
 
 **Architecture:** separately stored, UTF-8 TiddlyWiki `.tid` files; GitHub Actions builds a self-contained static `index.html` and publishes it to GitHub Pages. No server or local Node.js installation is required to *read* the site.
 
-This repository is intentionally independent of GATES, while following the same modular tiddler approach. Its presentation mirrors the GATES **Kung Fu** domain (oxblood/parchment palette, KaiTi-inspired typography, and locally copied ornamental borders). The eight border images are imported from the same owner's GATES repository and served locally rather than linked from the other wiki.
+This repository is intentionally independent of GATES, while following the same modular tiddler approach. Its standalone CSS theme adapts GATES Kung Fu's oxblood/parchment palette, KaiTi-like typography, dividers, and compact reference-list styling. GATES' privately hosted border images have not been copied.
 
 ## Browsing and deployment
 
