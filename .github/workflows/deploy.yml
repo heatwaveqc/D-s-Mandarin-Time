@@ -58,7 +58,7 @@ jobs:
           test -s public/index.html
           grep -q "D's Mandarin Time" public/index.html
           grep -q "师父有一本书" public/index.html
-          test -s public/audio/nihao.mp3
+          test -s public/audio/nihao.ogg
           echo "Built static wiki:"
           ls -lh public/index.html
 
