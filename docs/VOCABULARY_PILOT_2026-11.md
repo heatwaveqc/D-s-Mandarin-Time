@@ -22,7 +22,7 @@ Research access is not redistribution permission. In particular, a research down
 
 Candidate IDs use `cmn:<simplified-form>:<POS>` for a headword/POS unit; add a stable sense suffix only when senses require independent curriculum treatment (for example `cmn:打:verb:s01`). The display form is not itself the identity: traditional variants map to the same lexeme; POS-distinct or unrelated homographs may have separate records; polysemous senses stay together when their grammar/teaching behavior is shared. Heteronyms require sense/pronunciation-specific records or explicit reading notes. Separable verbs are lexicalized as the conventional verb but retain a note on separable syntax; productive phrases are not added as lexical items. This is a proposed convention, not yet enforced by the validator.
 
-The attached CSV has 200 unique simplified-form candidates (50 each, across four provisional strata). Repeated occurrences across genres are one candidate, not multiple counts. “Provisional” is deliberate: source ranks, HSK editions/levels, frequency bands and coverage are not fabricated. Review confidence is a triage estimate, not a claim of corpus verification.
+The attached CSV has 200 unique simplified-form candidates across four provisional strata: 50 fundamental, 47 high-use, 53 high-availability, and 50 wuxia/xianxia. Cross-category duplicates were counted once and assigned to the first applicable stratum. Repeated occurrences across genres are one candidate, not multiple counts. “Provisional” is deliberate: source ranks, HSK editions/levels, frequency bands and coverage are not fabricated. Review confidence is a triage estimate, not a claim of corpus verification.
 
 ## Pilot import
 
