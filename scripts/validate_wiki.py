@@ -13,6 +13,7 @@ VALID_KINDS = {"navigation", "roadmap", "grammar", "vocabulary",
 REQUIRED_WORD = ("mandarin-hanzi", "mandarin-pinyin",
                  "mandarin-gloss", "mandarin-pos")
 REQUIRED_CHARACTER = ("mandarin-hanzi", "mandarin-pinyin", "mandarin-gloss")
+VALID_LEXICAL_BANDS = {"fundamental", "high-use", "high-availability", "wuxia-specialist"}
 LIST_ITEM_RE = re.compile(r"\[\[([^\]]+)\]\]|([^\s]+)")
 LINK_RE = re.compile(r"\[\[([^\]]+)\]\]")
 
@@ -93,6 +94,9 @@ def validate(root: Path = TIDDLERS) -> tuple[list[str], dict[str, int]]:
             for key in REQUIRED_WORD:
                 if not fields.get(key):
                     errors.append(f"{p}: missing {key}")
+            lexical_band = fields.get("mandarin-lexical-band")
+            if lexical_band and lexical_band not in VALID_LEXICAL_BANDS:
+                errors.append(f"{p}: unsupported mandarin-lexical-band {lexical_band!r}")
         if kind == "character":
             for key in REQUIRED_CHARACTER:
                 if not fields.get(key):

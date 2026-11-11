@@ -18,6 +18,10 @@ class ValidatorTests(unittest.TestCase):
         self.assertEqual(wiki.title_list("[[Grammar/SVO Word Order]] [[Lesson/01 First Sentences]]"),
                          ["Grammar/SVO Word Order", "Lesson/01 First Sentences"])
 
+    def test_lexical_band_choices(self):
+        self.assertEqual(wiki.VALID_LEXICAL_BANDS,
+                         {"fundamental", "high-use", "high-availability", "wuxia-specialist"})
+
     def test_cycle_detection(self):
         self.assertEqual(wiki.detect_cycles({"A": ["B"], "B": ["A"]}),
                          [["A", "B", "A"]])
