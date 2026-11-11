@@ -23,7 +23,7 @@ See [Target Vocabulary Standard](docs/VOCABULARY_TARGET_STANDARD.md) and [Candid
 
 - `tiddlers/Navigation`: front page, indexes, course map, study instructions.
 - `tiddlers/Grammar`: independently linked grammatical concepts and prerequisites.
-- `tiddlers/Vocabulary`: individually stored word-level entries with hanzi, pinyin, POS, gloss, usage, lesson memberships and example.
+- `tiddlers/Vocabulary`: independently stored word-level entries with hanzi, pinyin, POS, gloss, usage, and examples; lesson membership is optional.
 - `tiddlers/Characters`: character-level semantic/phonetic decomposition with an etymology-confidence note.
 - `tiddlers/Lessons`: reusable lesson assemblies, learning objectives, dependencies.
 - `tiddlers/Readings`: controlled reading passages with pinyin and gloss.
@@ -34,7 +34,7 @@ All *course* records use `mandarin-kind` and `mandarin-level`. Vocabulary has `m
 
 Use real grammatical descriptions, give pinyin on all new Chinese example sentences, and avoid presenting character-component mnemonics as guaranteed etymologies.
 
-Vocabulary is navigated by lesson buckets (`mandarin-lessons: L01 L03`) instead of showing 7,000 entries at once. A short human-recorded, credited Mandarin audio sample is included as an asset-publishing pilot; see `docs/AUDIO_ASSETS.md`.
+Vocabulary exists independently of lesson planning. Omit `mandarin-lessons` on unassigned entries; use `mandarin-lessons: L01 L03` only when a word is assigned to one or more existing lesson-vocabulary indexes. All words remain searchable, while lesson-scoped pages show only assigned words instead of rendering 7,000 entries at once. A short human-recorded, credited Mandarin audio sample is included as an asset-publishing pilot; see `docs/AUDIO_ASSETS.md`.
 
 The wiki holds shared course material. **Do not commit sensitive personal speech recordings, private student data, or individually identifying assessment results to this public repository.** Learner progress can be maintained locally or in an access-controlled Drive sheet.
 
@@ -47,4 +47,4 @@ The wiki holds shared course material. **Do not commit sensitive personal speech
 
 See [[Wiki Guide]] in the published site for the browsing workflow and links among content types.
 
-Future bulk population: follow [Work vocabulary handoff](docs/WORK_POPULATION_GUIDE.md) to group words in bounded lesson indexes and avoid rendering an entire 7k lexicon at once.
+Future bulk population: follow [Work vocabulary handoff](docs/WORK_POPULATION_GUIDE.md) to ingest the master lexicon first, assign lessons separately where useful, and avoid rendering the entire corpus at once.

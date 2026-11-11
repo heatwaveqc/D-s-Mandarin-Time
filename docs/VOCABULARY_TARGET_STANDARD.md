@@ -71,7 +71,7 @@ Additional comparisons are documented in [Vocabulary Source Survey](VOCABULARY_S
 
 ## Data model / future ingestion
 
-Existing word tiddlers already have `mandarin-hanzi`, `mandarin-pinyin`, `mandarin-gloss`, `mandarin-pos`, and `mandarin-lessons`.
+Existing pilot word tiddlers have `mandarin-hanzi`, `mandarin-pinyin`, `mandarin-gloss`, and `mandarin-pos`; some also have `mandarin-lessons`. The `mandarin-lessons` field is **optional** for a master-lexicon entry and should be added only when the word is intentionally linked to a lesson. Vocabulary selection/ingestion and curricular lesson creation are independent workstreams.
 
 Optional curated metadata for new records:
 - `mandarin-lexical-band`: `fundamental` | `high-use` | `high-availability` | `wuxia-specialist`. Leave blank for provisional pilot vocabulary awaiting ranking.
