@@ -13,6 +13,12 @@ SOURCE_RE = re.compile(r"^[a-z][a-z0-9-]*$")
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 VALID_BANDS = {"fundamental", "high-use", "high-availability", "wuxia-specialist"}
 REGISTRY_COLUMNS = ["lexeme_id", "tiddler_path", "status", "assigned_batch", "notes"]
+SELECTION_COLUMNS = ["lexeme_id", "simplified", "traditional", "pinyin", "pos", "gloss",
+                     "selection_band", "candidate_key", "review_status", "notes"]
+RESEARCH_ONLY_FIELDS = ("mandarin-source-ids", "mandarin-lexical-band", "mandarin-band-evidence-id",
+                        "mandarin-frequency-rank", "mandarin-frequency-evidence-id",
+                        "mandarin-frequency-zipf", "mandarin-frequency-score",
+                        "mandarin-hsk-level", "mandarin-hsk-evidence-id", "mandarin-hsk-edition")
 EVIDENCE_COLUMNS = ["evidence_id", "lexeme_id", "source_id", "claim_type", "claim_value",
                     "review_status", "reviewed_by", "reviewed_on", "notes"]
 CLAIM_TYPES = {"form", "pronunciation", "sense", "register", "frequency", "hsk",
@@ -57,6 +63,7 @@ def validate(project_root: Path = PROJECT_ROOT) -> tuple[list[str], dict[str, in
     errors: list[str] = []
     research = project_root / "research"
     records = read_csv(research / "lexeme-id-registry.csv", REGISTRY_COLUMNS, errors)
+    selections = read_csv(research / "lexical-selection.csv", SELECTION_COLUMNS, errors)
     evidence_rows = read_csv(research / "lexical-evidence.csv", EVIDENCE_COLUMNS, errors)
     source_path = research / "lexical-sources.json"
     try:
@@ -103,7 +110,7 @@ def validate(project_root: Path = PROJECT_ROOT) -> tuple[list[str], dict[str, in
         if lid in id_to_record:
             errors.append(f"Registry: duplicated lexeme ID {lid!r}")
         id_to_record[lid] = row
-        if status not in {"active", "retired"}:
+        if status not in {"active", "planned", "retired"}:
             errors.append(f"Registry: {lid}: invalid status {status!r}")
         if not row.get("assigned_batch"):
             errors.append(f"Registry: {lid}: missing assigned_batch")
@@ -117,7 +124,28 @@ def validate(project_root: Path = PROJECT_ROOT) -> tuple[list[str], dict[str, in
                 errors.append(f"Registry: {path!r} registered twice")
             path_to_id[path] = lid
         elif path:
-            errors.append(f"Registry: retired {lid} must have empty tiddler_path")
+            errors.append(f"Registry: {status} {lid} must have empty tiddler_path")
+
+    selected_ids: set[str] = set()
+    for row in selections:
+        lid = row.get("lexeme_id") or ""
+        if lid in selected_ids:
+            errors.append(f"Selection: duplicate lexeme ID {lid!r}")
+        selected_ids.add(lid)
+        record = id_to_record.get(lid)
+        if not record or record.get("status") not in {"active", "planned"}:
+            errors.append(f"Selection: {lid!r} is not an active/planned registered ID")
+        for name in ("simplified", "pinyin", "pos", "gloss", "review_status", "candidate_key"):
+            if not row.get(name):
+                errors.append(f"Selection: {lid!r} missing {name}")
+        band = row.get("selection_band")
+        if band and band not in VALID_BANDS:
+            errors.append(f"Selection: {lid!r} has invalid selection_band {band!r}")
+        if row.get("review_status") not in {"selected", "needs-review"}:
+            errors.append(f"Selection: {lid!r} requires selected/needs-review status")
+    for lid, record in id_to_record.items():
+        if record.get("status") == "planned" and lid not in selected_ids:
+            errors.append(f"Registry: planned lexeme {lid} needs a selection-roster row")
 
     evidence: dict[str, dict[str, str]] = {}
     for row in evidence_rows:
@@ -174,43 +202,16 @@ def validate(project_root: Path = PROJECT_ROOT) -> tuple[list[str], dict[str, in
             errors.append(f"{relative}: lexeme {lid!r} not active in registry")
         elif registered.get("tiddler_path") != relative:
             errors.append(f"{relative}: registry points {lid} to {registered['tiddler_path']!r}")
-        source_ids = fields.get("mandarin-source-ids", "").split()
-        if not source_ids:
-            errors.append(f"{relative}: missing mandarin-source-ids")
-        if len(set(source_ids)) != len(source_ids):
-            errors.append(f"{relative}: duplicate mandarin-source-ids")
-        for sid in source_ids:
-            if sid not in sources:
-                errors.append(f"{relative}: unknown source ID {sid!r}")
-        for label, metadata, claim_kind in (
-            ("mandarin-band-evidence-id", "mandarin-lexical-band", "band"),
-            ("mandarin-frequency-evidence-id", "mandarin-frequency-rank", "frequency"),
-            ("mandarin-hsk-evidence-id", "mandarin-hsk-level", "hsk"),
-        ):
-            asserted = fields.get(metadata)
-            evid_id = fields.get(label)
-            if asserted and not evid_id:
-                errors.append(f"{relative}: {metadata} requires {label}")
-            if not evid_id:
-                continue
-            row = evidence.get(evid_id)
-            if (not row or row.get("lexeme_id") != lid
-                    or row.get("claim_type") != claim_kind
-                    or row.get("review_status") != "verified"):
-                errors.append(f"{relative}: {label} must reference verified {claim_kind} evidence for {lid}")
-            elif asserted and asserted != row.get("claim_value"):
-                errors.append(f"{relative}: {metadata} differs from evidence {evid_id}")
-        if fields.get("mandarin-lexical-band") and fields["mandarin-lexical-band"] not in VALID_BANDS:
-            errors.append(f"{relative}: invalid lexical band")
-        for name in ("mandarin-frequency-zipf", "mandarin-frequency-score"):
-            if fields.get(name) and not fields.get("mandarin-frequency-evidence-id"):
-                errors.append(f"{relative}: {name} requires frequency evidence")
+        for research_field in RESEARCH_ONLY_FIELDS:
+            if fields.get(research_field):
+                errors.append(f"{relative}: research-only field {research_field} must be kept outside .tid")
 
     for path, lid in path_to_id.items():
         if seen.get(lid) != path:
             errors.append(f"Registry: active {lid} does not match a vocabulary tiddler at {path}")
     return errors, {"lexemes": word_count, "registered": len(id_to_record),
-                    "sources": len(sources), "evidence": len(evidence)}
+                    "planned": sum(r.get("status") == "planned" for r in id_to_record.values()),
+                    "selection": len(selections), "sources": len(sources), "evidence": len(evidence)}
 
 
 def check_history(old: list[dict[str, str]], new: list[dict[str, str]]) -> list[str]:
@@ -226,10 +227,18 @@ def check_history(old: list[dict[str, str]], new: list[dict[str, str]]) -> list[
         current = after.get(lid)
         if current is None:
             problems.append(f"Previously allocated lexeme ID {lid} was removed (retire it instead)")
-        elif previous.get("status") == "retired" and current.get("status") != "retired":
+            continue
+        old_status, new_status = previous.get("status"), current.get("status")
+        if old_status == "retired" and new_status != "retired":
             problems.append(f"Retired lexeme ID {lid} cannot be reactivated")
-        elif previous.get("tiddler_path") != current.get("tiddler_path"):
-            if not (current.get("notes") or "").startswith("moved:"):
-                if current.get("status") != "retired":
-                    problems.append(f"Lexeme {lid} moved without a 'moved:' audit note")
+        if old_status == "active" and new_status == "planned":
+            problems.append(f"Published lexeme ID {lid} cannot revert to planned")
+        old_path, new_path = previous.get("tiddler_path"), current.get("tiddler_path")
+        notes = current.get("notes") or ""
+        if old_status == "planned" and new_status == "active":
+            if not notes.startswith("published:"):
+                problems.append(f"Planned lexeme {lid} activated without a 'published:' audit note")
+        elif old_path != new_path and new_status != "retired":
+            if not notes.startswith("moved:"):
+                problems.append(f"Lexeme {lid} moved without a 'moved:' audit note")
     return problems
