@@ -1,4 +1,4 @@
-"lexeme_id","simplified","traditional","pinyin","pos","gloss","candidate_band","source_provenance","wordfreq_zh_rank","subtlex_ch_rank","hsk_2025_level","register","topic","identity_notes","review_status","confidence"
+"candidate_key","simplified","traditional","pinyin","pos","gloss","candidate_band","source_provenance","wordfreq_zh_rank","subtlex_ch_rank","hsk_2025_level","register","topic","identity_notes","review_status","confidence"
 "cmn:我:pronoun","我","我","wǒ","pronoun","I","fundamental-provisional","editorial candidate; source-derived ranks not imported","","","","mixed/general","general","","provisional; linguistic review required","medium"
 "cmn:你:pronoun","你","你","nǐ","pronoun","you","fundamental-provisional","editorial candidate; source-derived ranks not imported","","","","mixed/general","general","","provisional; linguistic review required","medium"
 "cmn:他:pronoun","他","他","tā","pronoun","he","fundamental-provisional","editorial candidate; source-derived ranks not imported","","","","mixed/general","general","","provisional; linguistic review required","medium"
