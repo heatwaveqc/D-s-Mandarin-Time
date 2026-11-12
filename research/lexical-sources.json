@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "last_reviewed": "2026-11-11",
+  "last_reviewed": "2026-11-12",
   "sources": [
     {
       "id": "curriculum-editorial",
@@ -16,13 +16,13 @@
     {
       "id": "wordfreq-zh",
       "kind": "frequency",
-      "release": null,
+      "release": "wordfreq 3.1.1; large_zh.msgpack.gz",
       "source_url": "https://github.com/rspeer/wordfreq",
-      "license": "CC BY-SA 4.0 data with upstream notices; Apache-2.0 code",
-      "reuse_status": "not-yet-approved",
-      "sha256": null,
-      "accessed": "2026-11-11",
-      "notes": "Freeze exact release, package data hash and licensing/NOTICE before importing ranks. Do not treat mixed-register frequency as an HSK or high-availability label."
+      "license": "CC BY-SA 4.0 data; Apache-2.0 code; preserve all upstream notices and attribution",
+      "reuse_status": "redistribution-approved",
+      "sha256": "e079d7aaff1cfb92874850cb3ffbc7b611af939d9d671c1cbda932d968467cdd",
+      "accessed": "2026-11-12",
+      "notes": "Pinned package data used for aggregate zh top-N ordering. Credit Robyn Speer and the included SUBTLEX authors (including Cai & Brysbaert, SUBTLEX-CH); wordfreq states SUBTLEX is freely available. Mixed-source rank is not a domain-specific count, HSK level, high-availability label, or coverage result. Derived survey data must retain CC BY-SA 4.0 and attribution."
     },
     {
       "id": "subtlex-ch",
@@ -49,13 +49,24 @@
     {
       "id": "cc-cedict",
       "kind": "dictionary",
-      "release": null,
+      "release": "MDBG CC-CEDICT snapshot 2026-11-11T02:50:39Z",
       "source_url": "https://cc-cedict.org/editor/editor.php?handler=Download",
       "license": "CC BY-SA 4.0",
-      "reuse_status": "reference-only",
-      "sha256": null,
-      "accessed": "2026-11-11",
-      "notes": "Reference for independent adjudication. For derivative published data, first freeze snapshot/hash and satisfy attribution and ShareAlike requirements."
+      "reuse_status": "redistribution-approved",
+      "sha256": "c4450a361f0659bb1bf152577d07cc45f65dc280616b68b23bafc6fec817155b",
+      "accessed": "2026-11-12",
+      "notes": "Pinned gzip snapshot; source Pinyin/gloss copied into private research shards. Derived files remain CC BY-SA 4.0 with MDBG/community and CEDICT attribution; retain this snapshot hash."
+    },
+    {
+      "id": "jieba-zh",
+      "kind": "lexical-pos",
+      "release": "wordfreq 3.1.1; jieba_zh_orig.txt",
+      "source_url": "https://github.com/rspeer/wordfreq/blob/master/wordfreq/data/jieba_zh_orig.txt",
+      "license": "CC BY-SA 4.0 as distributed in wordfreq; upstream notes Chinese Jieba wordlist provenance is not fully known",
+      "reuse_status": "not-yet-approved",
+      "sha256": "7197c3211ddd98962b036cdf40324d1ea2bfaa12bd028e68faa70111a88e12a8",
+      "accessed": "2026-11-12",
+      "notes": "POS tags were mapped only as provisional review aids in private survey shards. Do not treat them as verified linguistic classification or redistribute this tagged source pending provenance review."
     }
   ]
 }
